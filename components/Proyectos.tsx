@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { X, Pause, Play, ArrowUpRight, Plus } from 'lucide-react';
+import { X, Pause, Play, ArrowUpRight } from 'lucide-react';
 import { proyectos, MOSTRAR_PENDIENTES, type Proyecto } from './proyectos';
 
 const por = (s: string[]) => s.map((x) => proyectos.find((p) => p.slug === x)!);
@@ -10,32 +10,28 @@ const abajo = por(['grupo-rios', 'wm-refractories', 'inspira-stone', 'vida-esenc
 
 const Pendiente = () => <span className="rounded bg-amber-100 px-2 py-0.5 text-xs font-semibold text-amber-800">Pendiente</span>;
 
-function Fila({ items, alto, dir, dur, cta, abrir }: { items: Proyecto[]; alto: string; dir: '' | 'der'; dur: number; cta?: boolean; abrir: (p: Proyecto) => void }) {
+function Fila({ items, alto, dir, dur, abrir }: { items: Proyecto[]; alto: string; dir: '' | 'der'; dur: number; abrir: (p: Proyecto) => void }) {
   return (
-    <div className="marquee overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+    <div className={`marquee marquee-mascara overflow-hidden py-4 ${alto}`}>
       <div className={`marquee-pista ${dir}`} style={{ ['--dur' as string]: `${dur}s` }}>
         {[0, 1, 2].map((c) => (
-          <div key={c} aria-hidden={c > 0} className={`flex shrink-0 gap-5 pr-5 ${alto} ${c > 0 ? 'copia' : ''}`}>
+          <div key={c} aria-hidden={c > 0} className={`flex h-[var(--h)] shrink-0 gap-5 pr-5 ${c > 0 ? 'copia' : ''}`}>
             {items.map((p) => (
               <button key={p.slug} tabIndex={c > 0 ? -1 : 0} onClick={() => abrir(p)} aria-label={`Ver proyecto ${p.nombre}`}
-                className="group relative h-full shrink-0 overflow-hidden rounded-xl bg-grafito">
-                <Image src={p.principal.src} width={p.principal.w} height={p.principal.h} alt={c > 0 ? '' : `Sitio web de ${p.nombre}`}
-                  sizes="(min-width:768px) 560px, 360px" className="h-full w-auto max-w-none transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none" />
-                <span className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 bg-gradient-to-t from-black/85 to-transparent p-4 text-left text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
-                  <span className="font-display text-lg font-bold">{p.nombre}</span>
-                  <span className="flex shrink-0 items-center gap-1 text-sm font-semibold text-naranja-claro">Ver proyecto <Plus size={16} /></span>
+                className="group flex h-full w-[calc((var(--h)_-_28px)_*_2)] shrink-0 flex-col overflow-hidden rounded-xl border border-black/10 bg-white text-left shadow-[0_10px_25px_-5px_rgba(0,0,0,0.08)]">
+                <span aria-hidden className="flex h-7 shrink-0 items-center gap-1.5 border-b border-black/5 bg-niebla px-3">
+                  <span className="h-2 w-2 rounded-full bg-black/15" /><span className="h-2 w-2 rounded-full bg-black/15" /><span className="h-2 w-2 rounded-full bg-black/15" />
+                  <span className="mx-auto max-w-[55%] truncate rounded-full bg-white px-3 py-0.5 text-[11px] font-medium text-grafito/60">{p.nombre}</span>
+                </span>
+                <span className="relative block flex-1 overflow-hidden">
+                  <Image src={p.principal.src} fill sizes="560px" alt="" className="object-cover object-top transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none" />
+                  {p.categoria && <span className="absolute bottom-3 left-3 z-10 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-azul shadow">{p.categoria}</span>}
+                  <span className="absolute inset-0 z-20 flex items-center justify-center bg-grafito/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
+                    <span className="flex items-center gap-2 rounded-full bg-white px-5 py-2.5 font-semibold text-azul shadow-lg">Ver proyecto <ArrowUpRight size={18} /></span>
+                  </span>
                 </span>
               </button>
             ))}
-            {cta && (
-              <a href="#contacto" tabIndex={c > 0 ? -1 : 0}
-                className="group flex h-full w-[300px] shrink-0 flex-col justify-center rounded-xl bg-gradient-to-br from-azul to-azul-oscuro p-6 text-white md:w-[380px]">
-                <span className="font-display text-2xl font-bold leading-tight md:text-3xl">Tu proyecto puede ser el siguiente.</span>
-                <span className="mt-4 inline-flex items-center gap-2 font-semibold text-naranja-claro">
-                  Cotiza tu proyecto <ArrowUpRight size={18} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                </span>
-              </a>
-            )}
           </div>
         ))}
       </div>
@@ -54,7 +50,7 @@ function Bloque({ titulo, ok, children }: { titulo: string; ok: boolean; childre
 }
 
 function Ficha({ p, cerrar }: { p: Proyecto; cerrar: () => void }) {
-  const meta = [p.sector, p.solucion, p.anio].filter(Boolean).join(' · ');
+  const meta = [p.sector, p.solucion ?? p.categoria, p.anio].filter(Boolean).join(' · ');
   return (
     <article>
       <div className="sticky top-0 z-10 h-0">
@@ -115,19 +111,23 @@ export default function Proyectos() {
 
   return (
     <section id="proyectos" className="py-20">
-      <div className="mx-auto flex max-w-6xl flex-wrap items-end justify-between gap-4 px-5">
-        <div>
+      <div className="mx-auto max-w-6xl px-5">
+        <div className="flex items-center gap-4">
           <h2 className="font-display text-3xl font-bold md:text-4xl">Proyectos recientes</h2>
-          <p className="mt-3 max-w-xl text-grafito/80">Marcas que confiaron en nosotros. Haz clic en un proyecto para conocerlo.</p>
+          <button onClick={() => setPausa(!pausa)} aria-pressed={pausa} aria-label={pausa ? 'Reanudar movimiento' : 'Pausar movimiento'} title={pausa ? 'Reanudar movimiento' : 'Pausar movimiento'}
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-grafito/20 text-grafito hover:border-naranja hover:text-naranja">
+            {pausa ? <Play size={16} /> : <Pause size={16} />}
+          </button>
         </div>
-        <button onClick={() => setPausa(!pausa)} aria-pressed={pausa}
-          className="flex items-center gap-2 rounded-full border border-grafito/20 px-4 py-2 text-sm font-semibold hover:border-naranja hover:text-naranja">
-          {pausa ? <Play size={16} /> : <Pause size={16} />} {pausa ? 'Reanudar movimiento' : 'Pausar movimiento'}
-        </button>
+        <p className="mt-3 max-w-xl text-grafito/80">Marcas que confiaron en nosotros. Haz clic en un proyecto para conocerlo.</p>
       </div>
-      <div className={`mt-10 space-y-5 ${pausa ? 'pausa' : ''}`}>
-        <Fila items={arriba} alto="h-[200px] md:h-[300px]" dir="" dur={75} abrir={setSel} />
-        <Fila items={abajo} alto="h-[160px] md:h-[240px]" dir="der" dur={85} cta abrir={setSel} />
+      <div className={`mt-8 space-y-2 ${pausa ? 'pausa' : ''}`}>
+        <Fila items={arriba} alto="[--h:200px] md:[--h:300px]" dir="" dur={75} abrir={setSel} />
+        <Fila items={abajo} alto="[--h:170px] md:[--h:250px]" dir="der" dur={85} abrir={setSel} />
+      </div>
+      <div className="mx-auto mt-8 flex max-w-6xl flex-col items-center gap-4 px-5 text-center">
+        <p className="font-display text-2xl font-bold text-azul md:text-3xl">¿Quieres que tu proyecto sea el siguiente?</p>
+        <a href="#contacto" className="rounded-full bg-naranja px-8 py-4 text-sm font-semibold uppercase tracking-widest text-white hover:bg-naranja-claro">Cotiza tu proyecto</a>
       </div>
       <dialog ref={dlg} onClose={() => setSel(null)} onClick={(e) => e.target === dlg.current && dlg.current?.close()} aria-labelledby="ficha-titulo"
         className="m-auto max-h-[92vh] w-[min(1000px,94vw)] overflow-y-auto rounded-2xl bg-white p-0 text-grafito backdrop:bg-black/70">
