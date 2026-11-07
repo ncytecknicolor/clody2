@@ -3,10 +3,10 @@ import ContactForm from '@/components/ContactForm';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import Servicios from '@/components/Servicios';
+import Proyectos from '@/components/Proyectos';
 
 const WA = 'https://api.whatsapp.com/send?phone=528131979805&text=Hola%20quiero%20informacion%20de%20los%20servicios%20de%20Dynamedia';
 
-const proyectos = ['HEMSA', 'Campo Aventura', 'Admynco', 'Nibo', 'Protectus', 'Vida Esencial', 'Nutriceramic', 'Purizee', 'Eitmedia'];
 const cifras = [['15', 'años de experiencia'], ['289', 'proyectos desarrollados'], ['320', 'clientes satisfechos'], ['1,590', 'horas de desarrollo']];
 
 export default function Home() {
@@ -25,15 +25,7 @@ export default function Home() {
 
         <Servicios />
 
-        <section id="proyectos" className="mx-auto max-w-6xl px-5 py-20">
-          <h2 className="font-display text-3xl font-bold md:text-4xl">Proyectos recientes</h2>
-          <p className="mt-3 max-w-xl text-grafito/80">Marcas que confiaron en nosotros. Agrega las capturas en <code>public/projects</code> y reemplaza estos bloques por <code>next/image</code>.</p>
-          <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3">
-            {proyectos.map((p) => (
-              <div key={p} className="flex aspect-[4/3] items-center justify-center rounded-lg bg-grafito font-display text-lg font-semibold text-white">{p}</div>
-            ))}
-          </div>
-        </section>
+        <Proyectos />
 
         <section className="bg-niebla py-20">
           <div className="mx-auto grid max-w-6xl gap-12 px-5 md:grid-cols-2">

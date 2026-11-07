@@ -7,3 +7,15 @@ body { @apply bg-white text-grafito antialiased; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { animation: none !important; } }
 @keyframes giro { from { transform: rotate(45deg) scale(.8); opacity: 0 } to { transform: rotate(45deg) scale(1); opacity: 1 } }
 .rombo { animation: giro .9s ease-out both; }
+
+/* Carrusel de proyectos: 3 copias de cada fila, se desplaza una copia (-33.33%) y reinicia sin saltos */
+@keyframes marquee-izq { to { transform: translateX(-33.3333%); } }
+@keyframes marquee-der { from { transform: translateX(-33.3333%); } to { transform: translateX(0); } }
+.marquee-pista { display: flex; width: max-content; animation: marquee-izq var(--dur, 75s) linear infinite; will-change: transform; }
+.marquee-pista.der { animation-name: marquee-der; }
+.marquee:hover .marquee-pista, .marquee:focus-within .marquee-pista, .pausa .marquee-pista { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .marquee { overflow-x: auto; }
+  .marquee-pista { animation: none; }
+  .marquee-pista .copia { display: none; }
+}
