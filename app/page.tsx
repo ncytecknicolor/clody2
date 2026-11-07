@@ -1,18 +1,11 @@
-import { Palette, Globe, Search, Code2, Share2, ShoppingCart, GraduationCap, LifeBuoy, MessageCircle, Mail, MapPin } from 'lucide-react';
+import { GraduationCap, LifeBuoy, MessageCircle, Mail, MapPin } from 'lucide-react';
 import ContactForm from '@/components/ContactForm';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
+import Servicios from '@/components/Servicios';
 
 const WA = 'https://api.whatsapp.com/send?phone=528131979805&text=Hola%20quiero%20informacion%20de%20los%20servicios%20de%20Dynamedia';
 
-const servicios = [
-  { icon: Globe, t: 'Diseño web', d: 'Sitios que se ven bien y cargan rápido en computadora y celular.' },
-  { icon: Code2, t: 'Software a la medida', d: 'Encuestas, inventarios, nómina y lo que tu empresa necesite.' },
-  { icon: Search, t: 'Posicionamiento en Google', d: 'Llevamos tu sitio a la primera página de resultados.' },
-  { icon: ShoppingCart, t: 'Tiendas virtuales', d: 'Con formas de pago y envío integradas para vender desde el primer día.' },
-  { icon: Share2, t: 'Redes sociales para pymes', d: 'Una identidad profesional que te conecta con el cliente ideal.' },
-  { icon: Palette, t: 'Diseño gráfico', d: 'Logotipos, empaques, diseño editorial, material POP e impresos.' },
-];
 const proyectos = ['HEMSA', 'Campo Aventura', 'Admynco', 'Nibo', 'Protectus', 'Vida Esencial', 'Nutriceramic', 'Purizee', 'Eitmedia'];
 const cifras = [['15', 'años de experiencia'], ['289', 'proyectos desarrollados'], ['320', 'clientes satisfechos'], ['1,590', 'horas de desarrollo']];
 
@@ -30,20 +23,7 @@ export default function Home() {
           ))}
         </section>
 
-        <section id="servicios" className="bg-niebla py-20">
-          <div className="mx-auto max-w-6xl px-5">
-            <h2 className="font-display text-3xl font-bold md:text-4xl">Lo que hacemos por tu empresa</h2>
-            <ul className="mt-10 divide-y divide-grafito/10 border-y border-grafito/10">
-              {servicios.map(({ icon: Icon, t, d }) => (
-                <li key={t} className="grid items-center gap-3 py-6 md:grid-cols-[3rem_16rem_1fr]">
-                  <Icon className="text-naranja" size={28} />
-                  <h3 className="font-display text-xl font-semibold text-azul">{t}</h3>
-                  <p className="text-grafito/80">{d}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
+        <Servicios />
 
         <section id="proyectos" className="mx-auto max-w-6xl px-5 py-20">
           <h2 className="font-display text-3xl font-bold md:text-4xl">Proyectos recientes</h2>
