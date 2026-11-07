@@ -7,12 +7,16 @@ import { slides } from './heroSlides';
 export default function Hero() {
   const [i, setI] = useState(0);
   const [pausa, setPausa] = useState(false);
+  const [fallo, setFallo] = useState<Record<string, boolean>>({});
   const n = slides.length;
+  const actual = slides[i];
+  const conVideo = !!actual.video && !fallo[actual.id];
   useEffect(() => {
-    if (pausa) return;
+    // En una pantalla con video, el que avanza es el propio video al terminar
+    if (pausa || conVideo) return;
     const t = setInterval(() => setI((v) => (v + 1) % n), 6500);
     return () => clearInterval(t);
-  }, [pausa, n]);
+  }, [pausa, n, i, conVideo]);
   const ir = (k: number) => setI((k + n) % n);
   const flecha = 'absolute top-1/2 z-20 -translate-y-1/2 rounded-full p-2 text-white/90 hover:bg-white/15';
 
@@ -29,6 +33,11 @@ export default function Hero() {
             className={`absolute inset-0 transition-opacity duration-700 motion-reduce:transition-none ${activa ? 'opacity-100' : 'pointer-events-none opacity-0'}`}>
             <div className="absolute inset-0" style={{ background: s.fondo }} />
             {s.imagen && <Image src={s.imagen} alt="" fill priority={k === 0} sizes="100vw" className="object-cover" />}
+            {s.video && activa && !fallo[s.id] && (
+              <video src={s.video} poster={s.imagen} autoPlay muted playsInline preload="metadata"
+                onEnded={() => ir(i + 1)} onError={() => setFallo((f) => ({ ...f, [s.id]: true }))}
+                className="absolute inset-0 h-full w-full object-cover" />
+            )}
             <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/40" />
             <div className="relative flex h-full flex-col items-center justify-center px-6 pt-24 text-center">
               <H className="font-display text-[clamp(2.25rem,8vw,6.5rem)] font-extrabold uppercase leading-[0.95] tracking-tight">
