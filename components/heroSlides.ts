@@ -6,7 +6,7 @@
 export type Slide = { id: string; titulo: string[]; texto: string; fondo: string; imagen?: string; video?: string };
 
 export const slides: Slide[] = [
-  { id: 'somos', titulo: ['Somos', 'Dynamedia'], texto: 'Un equipo de expertos, capacitados en Diseño Web, Marketing Digital y Desarrollo de Software, siempre dispuestos a ayudarte.', fondo: 'linear-gradient(135deg,#123874,#1B4F9C)' },
+  { id: 'somos', titulo: ['Somos', 'Dynamedia'], texto: 'Un equipo de expertos, capacitados en Diseño Web, Marketing Digital y Desarrollo de Software, siempre dispuestos a ayudarte.', fondo: 'linear-gradient(135deg,#123874,#1B4F9C)', video: '/hero/video.mp4 },
   { id: 'soluciones', titulo: ['Generamos', 'soluciones'], texto: 'Creemos en la comunicación directa con nuestros clientes para así brindar soluciones funcionales a sus necesidades.', fondo: 'linear-gradient(135deg,#2B2F36,#1B4F9C)' },
   { id: 'grafico', titulo: ['Diseño gráfico'], texto: 'Creamos experiencias a través de logotipos, empaques, diseño editorial, material POP e impresos de todo tipo.', fondo: 'linear-gradient(135deg,#2B2F36,#F26B21)' },
   { id: 'web', titulo: ['Diseño web'], texto: 'Apasionados por impulsar la presencia de nuestros clientes con proyectos web de calidad.', fondo: 'linear-gradient(135deg,#1B4F9C,#2B2F36)' },
