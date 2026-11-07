@@ -4,27 +4,29 @@ import Image from 'next/image';
 import { X, Pause, Play, ArrowUpRight } from 'lucide-react';
 import { proyectos, MOSTRAR_PENDIENTES, type Proyecto } from './proyectos';
 
-const por = (s: string[]) => s.map((x) => proyectos.find((p) => p.slug === x)!);
-const arriba = por(['campo-aventura', 'trofeos-mg', 'gsf', 'crealte', 'we-love-party']);
-const abajo = por(['grupo-rios', 'wm-refractories', 'inspira-stone', 'vida-esencial']);
+// r = proporción ancho/alto de la tarjeta (2.1 ancha, 1.5 media, 1.1 angosta); pos: 'left' ancla el recorte a la izquierda.
+type Item = { p: Proyecto; r: number; pos?: 'left' };
+const fila = (l: [string, number, 'left'?][]): Item[] => l.map(([s, r, pos]) => ({ p: proyectos.find((x) => x.slug === s)!, r, pos }));
+const arriba = fila([['campo-aventura', 2.1], ['gsf', 1.1], ['we-love-party', 2.1], ['trofeos-mg', 1.5, 'left'], ['crealte', 2.1]]);
+const abajo = fila([['grupo-rios', 1.5], ['inspira-stone', 1.1], ['wm-refractories', 1.5, 'left'], ['vida-esencial', 2.1]]);
 
 const Pendiente = () => <span className="rounded bg-amber-100 px-2 py-0.5 text-xs font-semibold text-amber-800">Pendiente</span>;
 
-function Fila({ items, alto, dir, dur, abrir }: { items: Proyecto[]; alto: string; dir: '' | 'der'; dur: number; abrir: (p: Proyecto) => void }) {
+function Fila({ items, alto, dir, dur, cta, abrir }: { items: Item[]; alto: string; dir: '' | 'der'; dur: number; cta?: boolean; abrir: (p: Proyecto) => void }) {
   return (
     <div className={`marquee marquee-mascara overflow-hidden py-4 ${alto}`}>
       <div className={`marquee-pista ${dir}`} style={{ ['--dur' as string]: `${dur}s` }}>
         {[0, 1, 2].map((c) => (
           <div key={c} aria-hidden={c > 0} className={`flex h-[var(--h)] shrink-0 gap-5 pr-5 ${c > 0 ? 'copia' : ''}`}>
-            {items.map((p) => (
-              <button key={p.slug} tabIndex={c > 0 ? -1 : 0} onClick={() => abrir(p)} aria-label={`Ver proyecto ${p.nombre}`}
-                className="group flex h-full w-[calc((var(--h)_-_28px)_*_2)] shrink-0 flex-col overflow-hidden rounded-xl border border-black/10 bg-white text-left shadow-[0_10px_25px_-5px_rgba(0,0,0,0.08)]">
+            {items.map(({ p, r, pos }) => (
+              <button key={p.slug} tabIndex={c > 0 ? -1 : 0} onClick={() => abrir(p)} aria-label={`Ver proyecto ${p.nombre}`} style={{ ['--r' as string]: r }}
+                className="group flex h-full w-[calc((var(--h)_-_28px)_*_var(--r))] shrink-0 flex-col overflow-hidden rounded-xl border border-black/10 bg-white text-left shadow-[0_10px_25px_-5px_rgba(0,0,0,0.08)]">
                 <span aria-hidden className="flex h-7 shrink-0 items-center gap-1.5 border-b border-black/5 bg-niebla px-3">
                   <span className="h-2 w-2 rounded-full bg-black/15" /><span className="h-2 w-2 rounded-full bg-black/15" /><span className="h-2 w-2 rounded-full bg-black/15" />
                   <span className="mx-auto max-w-[55%] truncate rounded-full bg-white px-3 py-0.5 text-[11px] font-medium text-grafito/60">{p.nombre}</span>
                 </span>
                 <span className="relative block flex-1 overflow-hidden">
-                  <Image src={p.principal.src} fill sizes="560px" alt="" className="object-cover object-top transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none" />
+                  <Image src={p.principal.src} fill sizes="560px" alt="" className={`object-cover ${pos === 'left' ? 'object-left-top' : 'object-top'} transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none`} />
                   {p.categoria && <span className="absolute bottom-3 left-3 z-10 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-azul shadow">{p.categoria}</span>}
                   <span className="absolute inset-0 z-20 flex items-center justify-center bg-grafito/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
                     <span className="flex items-center gap-2 rounded-full bg-white px-5 py-2.5 font-semibold text-azul shadow-lg">Ver proyecto <ArrowUpRight size={18} /></span>
@@ -32,6 +34,15 @@ function Fila({ items, alto, dir, dur, abrir }: { items: Proyecto[]; alto: strin
                 </span>
               </button>
             ))}
+            {cta && (
+              <a href="#contacto" tabIndex={c > 0 ? -1 : 0}
+                className="group flex h-full w-[300px] shrink-0 flex-col justify-center rounded-xl bg-gradient-to-br from-azul to-azul-oscuro p-6 text-white md:w-[380px]">
+                <span className="font-display text-2xl font-bold leading-tight md:text-3xl">Tu proyecto puede ser el siguiente.</span>
+                <span className="mt-4 inline-flex items-center gap-2 font-semibold text-naranja-claro">
+                  Cotiza tu proyecto <ArrowUpRight size={18} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </span>
+              </a>
+            )}
           </div>
         ))}
       </div>
@@ -123,11 +134,7 @@ export default function Proyectos() {
       </div>
       <div className={`mt-8 space-y-2 ${pausa ? 'pausa' : ''}`}>
         <Fila items={arriba} alto="[--h:200px] md:[--h:300px]" dir="" dur={75} abrir={setSel} />
-        <Fila items={abajo} alto="[--h:170px] md:[--h:250px]" dir="der" dur={85} abrir={setSel} />
-      </div>
-      <div className="mx-auto mt-8 flex max-w-6xl flex-col items-center gap-4 px-5 text-center">
-        <p className="font-display text-2xl font-bold text-azul md:text-3xl">¿Quieres que tu proyecto sea el siguiente?</p>
-        <a href="#contacto" className="rounded-full bg-naranja px-8 py-4 text-sm font-semibold uppercase tracking-widest text-white hover:bg-naranja-claro">Cotiza tu proyecto</a>
+        <Fila items={abajo} alto="[--h:170px] md:[--h:250px]" dir="der" dur={85} cta abrir={setSel} />
       </div>
       <dialog ref={dlg} onClose={() => setSel(null)} onClick={(e) => e.target === dlg.current && dlg.current?.close()} aria-labelledby="ficha-titulo"
         className="m-auto max-h-[92vh] w-[min(1000px,94vw)] overflow-y-auto rounded-2xl bg-white p-0 text-grafito backdrop:bg-black/70">
