@@ -1,4 +1,5 @@
-import { GraduationCap, LifeBuoy, MessageCircle, Mail, MapPin } from 'lucide-react';
+import Link from 'next/link';
+import { GraduationCap, LifeBuoy, MessageCircle, Mail, MapPin, ArrowRight } from 'lucide-react';
 import ContactForm from '@/components/ContactForm';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
@@ -21,7 +22,8 @@ export default function Home() {
           {cifras.map(([n, l]) => (
             <div key={l}><p className="font-display text-5xl font-bold text-azul">{n}</p><p className="mt-1 text-grafito/70">{l}</p></div>
           ))}
-        </section>
+        <Link href="/nosotros" className="inline-flex items-center gap-2 font-semibold text-azul hover:text-naranja sm:col-span-2 md:col-span-4">Conoce más sobre nosotros <ArrowRight size={18} /></Link>
+      </section>
 
         <Servicios />
 
