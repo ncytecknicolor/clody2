@@ -1,8 +1,9 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type PointerEvent } from 'react';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { slides } from './heroSlides';
+import { Magnetico } from './ui';
 
 export default function Hero() {
   const [i, setI] = useState(0);
@@ -16,10 +17,16 @@ export default function Hero() {
     return () => clearInterval(t);
   }, [pausa, n, i]);
   const ir = (k: number) => setI((k + n) % n);
+  const mover = (e: PointerEvent<HTMLElement>) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    e.currentTarget.style.setProperty('--mx', `${e.clientX - r.left}px`);
+    e.currentTarget.style.setProperty('--my', `${e.clientY - r.top}px`);
+  };
   const flecha = 'absolute top-1/2 z-20 -translate-y-1/2 rounded-full p-2 text-white/90 hover:bg-white/15';
 
   return (
     <section id="inicio" aria-roledescription="carousel" aria-label="Servicios de Dynamedia"
+      onPointerMove={mover}
       onMouseEnter={() => setPausa(true)} onMouseLeave={() => setPausa(false)}
       onFocus={() => setPausa(true)} onBlur={() => setPausa(false)}
       className="relative h-[100svh] min-h-[600px] overflow-hidden bg-grafito text-white">
@@ -43,14 +50,12 @@ export default function Hero() {
                 {s.titulo.map((l) => <span key={l} className="block">{l}</span>)}
               </H>
               <p className="mt-8 max-w-2xl text-lg md:text-xl">{s.texto}</p>
-              <a href="#contacto" tabIndex={activa ? 0 : -1}
-                className="mt-9 rounded-full bg-naranja px-9 py-4 text-sm font-semibold uppercase tracking-widest hover:bg-naranja-claro">
-                Contacto
-              </a>
+              <div className="mt-9"><Magnetico><a href="#contacto" tabIndex={activa ? 0 : -1} className="brillo block rounded-full bg-naranja px-9 py-4 text-sm font-semibold uppercase tracking-widest hover:bg-naranja-claro">Contacto</a></Magnetico></div>
             </div>
           </div>
         );
       })}
+      <div aria-hidden className="pointer-events-none absolute inset-0 z-10 hidden md:block" style={{ background: 'radial-gradient(420px circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,0.13), transparent 60%)' }} />
       <button aria-label="Pantalla anterior" onClick={() => ir(i - 1)} className={`${flecha} left-3 md:left-6`}><ChevronLeft size={32} /></button>
       <button aria-label="Pantalla siguiente" onClick={() => ir(i + 1)} className={`${flecha} right-3 md:right-6`}><ChevronRight size={32} /></button>
       <div className="absolute inset-x-0 bottom-6 z-20 flex justify-center gap-3">

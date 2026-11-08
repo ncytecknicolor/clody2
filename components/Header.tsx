@@ -9,7 +9,7 @@ const WA = 'https://api.whatsapp.com/send?phone=528131979805&text=Hola%20quiero%
 const links = [
   { t: 'Inicio', h: '/' },
   { t: 'Nosotros', h: '/nosotros' },
-  { t: 'Servicios', h: '/#servicios' },
+  { t: 'Servicios', h: '/servicios' },
   { t: 'Cursos', h: '/#cursos', sub: ['Curso WordPress Monterrey', 'Posicionamiento web Google'] },
   { t: 'Asesoría y soporte', h: '/#soporte' },
   { t: 'Contacto', h: '/#contacto' },
