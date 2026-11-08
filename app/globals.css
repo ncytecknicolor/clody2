@@ -34,3 +34,9 @@ body { @apply bg-white text-grafito antialiased; }
 .brillo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.35) 50%, transparent 70%); transform: translateX(-120%); transition: transform .7s ease; }
 .brillo:hover::after { transform: translateX(120%); }
 @media (prefers-reduced-motion: reduce) { .brillo::after { display: none; } }
+
+/* Maqueta de navegador que se "arma" sola y cursor de escritura */
+@keyframes sk { 0% { opacity: 0; transform: translateY(8px) scale(.98); } 14%, 86% { opacity: 1; transform: none; } 100% { opacity: 0; transform: translateY(-4px); } }
+.sk { animation: sk 8s ease-in-out infinite both; animation-delay: var(--d, 0s); }
+@keyframes caret { 50% { opacity: 0; } }
+.caret { animation: caret 1s steps(1) infinite; }

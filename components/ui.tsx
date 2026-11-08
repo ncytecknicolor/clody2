@@ -49,3 +49,22 @@ export function Parallax({ children, fuerza = 24, className = '' }: { children: 
   }, [fuerza]);
   return <div ref={ref} className={`transition-transform duration-300 ease-out ${className}`}>{children}</div>;
 }
+
+// Inclina la tarjeta en 3D según la posición del cursor.
+export function Inclinar({ children, max = 7, className = '' }: { children: ReactNode; max?: number; className?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const mover = (e: PointerEvent<HTMLDivElement>) => {
+    const el = ref.current;
+    if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const r = el.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width - 0.5;
+    const py = (e.clientY - r.top) / r.height - 0.5;
+    el.style.transform = `perspective(900px) rotateX(${-py * max}deg) rotateY(${px * max}deg)`;
+  };
+  return (
+    <div ref={ref} onPointerMove={mover} onPointerLeave={() => { if (ref.current) ref.current.style.transform = ''; }}
+      className={`transition-transform duration-200 ease-out will-change-transform ${className}`}>
+      {children}
+    </div>
+  );
+}

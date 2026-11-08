@@ -4,8 +4,8 @@ import { Tarjeta } from './ui';
 import Reveal from './Reveal';
 
 const cursos = [
-  { t: 'Curso de WordPress en Monterrey', d: 'Aprende a crear y administrar tu propio sitio web.' },
-  { t: 'Curso de posicionamiento web en Google', d: 'Aprende a mejorar la visibilidad de tu sitio en buscadores.' },
+  { t: 'Curso de WordPress en Monterrey', d: 'Aprende a crear y administrar tu propio sitio web.', h: '/cursos/wordpress-monterrey' },
+  { t: 'Curso de posicionamiento web en Google', d: 'Aprende a mejorar la visibilidad de tu sitio en buscadores.', h: '/cursos/posicionamiento-en-google' },
 ];
 const soporte = ['Soporte para el manejo de tu sitio', 'Actualización de contenidos', 'Resolución de problemas en tu página o sistema', 'Pólizas de soporte (pregunta por ellas)'];
 
@@ -22,10 +22,10 @@ export default function CursosSoporte() {
               <p className="mt-3 text-grafito/80">Capacitamos a equipos y a particulares que quieren crear o mantener páginas de internet.</p>
               <ul className="mt-6 space-y-3">
                 {cursos.map((c) => (
-                  <li key={c.t} className="rounded-xl bg-niebla p-4"><p className="font-semibold text-azul">{c.t}</p><p className="text-sm text-grafito/75">{c.d}</p></li>
+                  <li key={c.t}><Link href={c.h} className="group/c flex items-center justify-between gap-3 rounded-xl bg-niebla p-4 transition-colors hover:bg-azul/10"><span><span className="block font-semibold text-azul">{c.t}</span><span className="block text-sm text-grafito/75">{c.d}</span></span><ArrowUpRight size={18} className="shrink-0 text-naranja transition-transform group-hover/c:-translate-y-0.5 group-hover/c:translate-x-0.5" /></Link></li>
                 ))}
               </ul>
-              <Link href="/servicios/capacitacion" className="mt-auto inline-flex items-center gap-2 pt-8 font-semibold text-azul hover:text-naranja">Ver cursos y capacitación <ArrowUpRight size={18} /></Link>
+              <Link href="/cursos" className="mt-auto inline-flex items-center gap-2 pt-8 font-semibold text-azul hover:text-naranja">Ver todos los cursos <ArrowUpRight size={18} /></Link>
             </Tarjeta>
           </div>
         </Reveal>

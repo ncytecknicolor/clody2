@@ -27,6 +27,8 @@ export default function Footer() {
           <ul className="mt-4 space-y-2 text-sm">
             <li><Link href="/nosotros" className="hover:text-naranja-claro">Nosotros</Link></li>
             <li><Link href="/servicios" className="hover:text-naranja-claro">Todos los servicios</Link></li>
+            <li><Link href="/cursos/wordpress-monterrey" className="hover:text-naranja-claro">Curso de WordPress</Link></li>
+            <li><Link href="/cursos/posicionamiento-en-google" className="hover:text-naranja-claro">Curso de posicionamiento en Google</Link></li>
             <li><Link href="/#proyectos" className="hover:text-naranja-claro">Proyectos</Link></li>
             <li><Link href="/#contacto" className="hover:text-naranja-claro">Contacto</Link></li>
           </ul>

@@ -3,14 +3,15 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Facebook, MessageCircle, Menu, X, ChevronDown } from 'lucide-react';
+import { servicios } from '@/lib/servicios';
+import { FB, WA } from '@/lib/site';
 
-const FB = 'https://www.facebook.com/dynamediamx';
-const WA = 'https://api.whatsapp.com/send?phone=528131979805&text=Hola%20quiero%20informacion%20de%20los%20servicios%20de%20Dynamedia';
-const links = [
+type Item = { t: string; h: string; sub?: { t: string; h: string }[] };
+const links: Item[] = [
   { t: 'Inicio', h: '/' },
   { t: 'Nosotros', h: '/nosotros' },
-  { t: 'Servicios', h: '/servicios' },
-  { t: 'Cursos', h: '/#cursos', sub: ['Curso WordPress Monterrey', 'Posicionamiento web Google'] },
+  { t: 'Servicios', h: '/servicios', sub: [{ t: 'Ver todos los servicios', h: '/servicios' }, ...servicios.map((s) => ({ t: s.nombre, h: `/servicios/${s.slug}` }))] },
+  { t: 'Cursos', h: '/cursos', sub: [{ t: 'Curso de WordPress en Monterrey', h: '/cursos/wordpress-monterrey' }, { t: 'Curso de posicionamiento en Google', h: '/cursos/posicionamiento-en-google' }] },
   { t: 'Asesoría y soporte', h: '/#soporte' },
   { t: 'Contacto', h: '/#contacto' },
 ];
@@ -28,11 +29,17 @@ export default function Header() {
           <div className="hidden items-center gap-8 lg:flex">
             {links.map((l) => (
               <div key={l.t} className="group relative">
-                <Link href={l.h} className={`${item} flex items-center gap-1`}>{l.t}{l.sub && <ChevronDown size={14} />}</Link>
+                <Link href={l.h} className={`${item} flex items-center gap-1 py-2`}>{l.t}{l.sub && <ChevronDown size={14} className="transition-transform duration-200 group-hover:rotate-180" />}</Link>
                 {l.sub && (
-                  <ul className="invisible absolute left-0 top-full min-w-64 bg-grafito py-2 opacity-0 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
-                    {l.sub.map((s) => <li key={s}><Link href={l.h} className="block px-5 py-2 text-sm text-white hover:bg-white/10">{s}</Link></li>)}
-                  </ul>
+                  <div className="invisible absolute left-0 top-full z-40 translate-y-2 pt-2 opacity-0 transition duration-200 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+                    <ul className="min-w-72 overflow-hidden rounded-xl border border-white/10 bg-grafito py-2 shadow-2xl">
+                      {l.sub.map((s, k) => (
+                        <li key={s.h}>
+                          <Link href={s.h} className={`block px-5 py-2.5 text-sm hover:bg-white/10 hover:text-naranja-claro ${k === 0 && l.t === 'Servicios' ? 'border-b border-white/10 font-semibold text-naranja-claro' : 'text-white'}`}>{s.t}</Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 )}
               </div>
             ))}
@@ -44,8 +51,17 @@ export default function Header() {
           </button>
         </nav>
         {abierto && (
-          <div className="bg-azul-oscuro px-6 pb-6 lg:hidden">
-            {links.map((l) => <Link key={l.t} href={l.h} onClick={() => setAbierto(false)} className={`${item} block py-3`}>{l.t}</Link>)}
+          <div className="max-h-[75vh] overflow-y-auto bg-azul-oscuro px-6 pb-6 lg:hidden">
+            {links.map((l) => (
+              <div key={l.t}>
+                <Link href={l.h} onClick={() => setAbierto(false)} className={`${item} block py-3`}>{l.t}</Link>
+                {l.sub && (
+                  <ul className="mb-2 ml-3 space-y-1 border-l border-white/20 pl-4">
+                    {l.sub.map((s) => <li key={s.h}><Link href={s.h} onClick={() => setAbierto(false)} className="block py-1.5 text-sm text-white/80 hover:text-naranja-claro">{s.t}</Link></li>)}
+                  </ul>
+                )}
+              </div>
+            ))}
           </div>
         )}
       </header>
