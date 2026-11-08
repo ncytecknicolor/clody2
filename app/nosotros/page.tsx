@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Search, ClipboardList, PenTool, Rocket, LifeBuoy, MessageCircle } from 'lucide-react';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import NosotrosTabs from '@/components/NosotrosTabs';
 import Reveal from '@/components/Reveal';
 import Contador from '@/components/Contador';
@@ -100,7 +101,7 @@ export default function Nosotros() {
           </div>
         </section>
       </main>
-      <footer className="bg-grafito py-6 text-center text-sm text-white/60">© 2026 Dynamedia</footer>
+      <Footer />
     </>
   );
 }

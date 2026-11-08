@@ -28,3 +28,9 @@ body { @apply bg-white text-grafito antialiased; }
 @keyframes flota { 0%, 100% { transform: rotate(45deg) translateY(0); } 50% { transform: rotate(45deg) translateY(-18px); } }
 .flota { transform: rotate(45deg); animation: flota 9s ease-in-out infinite; }
 .flota-b { transform: rotate(45deg); animation: flota 12s ease-in-out infinite reverse; }
+
+/* Brillo que cruza los botones principales */
+.brillo { position: relative; overflow: hidden; }
+.brillo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.35) 50%, transparent 70%); transform: translateX(-120%); transition: transform .7s ease; }
+.brillo:hover::after { transform: translateX(120%); }
+@media (prefers-reduced-motion: reduce) { .brillo::after { display: none; } }
