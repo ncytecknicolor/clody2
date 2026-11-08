@@ -49,8 +49,17 @@ export default function Hero() {
               <H className="font-display text-[clamp(2.25rem,8vw,6.5rem)] font-extrabold uppercase leading-[0.95] tracking-tight">
                 {s.titulo.map((l) => <span key={l} className="block">{l}</span>)}
               </H>
-              <p className="mt-8 max-w-2xl text-lg md:text-xl">{s.texto}</p>
-              <div className="mt-9"><Magnetico><a href="#contacto" tabIndex={activa ? 0 : -1} className="brillo block rounded-full bg-naranja px-9 py-4 text-sm font-semibold uppercase tracking-widest hover:bg-naranja-claro">Contacto</a></Magnetico></div>
+              {Array.isArray(s.texto)
+                ? <div className="mt-8 max-w-3xl space-y-3 text-base md:text-lg">{s.texto.map((p) => <p key={p}>{p}</p>)}</div>
+                : <p className="mt-8 max-w-2xl text-lg md:text-xl">{s.texto}</p>}
+              <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
+                {(s.botones ?? [{ t: 'Contacto', h: '#contacto' }]).map((b, j) => (
+                  <Magnetico key={b.t}>
+                    <a href={b.h} tabIndex={activa ? 0 : -1}
+                      className={`brillo block rounded-full px-9 py-4 text-sm font-semibold uppercase tracking-widest ${j === 0 ? 'bg-naranja hover:bg-naranja-claro' : 'border-2 border-white/70 hover:bg-white/15'}`}>{b.t}</a>
+                  </Magnetico>
+                ))}
+              </div>
             </div>
           </div>
         );
