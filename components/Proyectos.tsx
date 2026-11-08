@@ -134,7 +134,7 @@ export default function Proyectos() {
       </div>
       <div className={`mt-8 space-y-2 ${pausa ? 'pausa' : ''}`}>
         <Fila items={arriba} alto="[--h:200px] md:[--h:300px]" dir="" dur={75} abrir={setSel} />
-        <Fila items={abajo} alto="[--h:170px] md:[--h:250px]" dir="der" dur={85} cta abrir={setSel} />
+        <Fila items={abajo} alto="[--h:200px] md:[--h:300px]" dir="der" dur={71} cta abrir={setSel} />
       </div>
       <dialog ref={dlg} onClose={() => setSel(null)} onClick={(e) => e.target === dlg.current && dlg.current?.close()} aria-labelledby="ficha-titulo"
         className="m-auto max-h-[92vh] w-[min(1000px,94vw)] overflow-y-auto rounded-2xl bg-white p-0 text-grafito backdrop:bg-black/70">
