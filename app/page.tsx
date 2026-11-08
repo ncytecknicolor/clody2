@@ -15,8 +15,8 @@ import SeccionContacto from '@/components/SeccionContacto';
 import Contador from '@/components/Contador';
 
 const cifras = [
-  { n: 15, p: '+', l: 'años de experiencia' }, { n: 289, p: '', l: 'proyectos desarrollados' },
-  { n: 320, p: '', l: 'clientes satisfechos' }, { n: 1590, p: '', l: 'horas de desarrollo' },
+  { n: 15, p: '+', l: 'años de experiencia' }, { n: 320, p: '+', l: 'proyectos desarrollados' },
+  { n: 280, p: '+', l: 'clientes atendidos' }, { n: 4, p: '', l: 'áreas de especialidad' },
 ];
 const faqs = [
   { q: '¿Dónde está Dynamedia y a quién atiende?', a: 'Estamos en Monterrey, Nuevo León, y trabajamos con empresas de Monterrey y de todo México.' },
@@ -53,7 +53,7 @@ export default function Home() {
         <section className="mx-auto max-w-6xl px-5 py-20">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
-              <h2 className="font-display text-3xl font-bold md:text-4xl">Todos nuestros servicios en Monterrey</h2>
+              <h2 className="font-display text-3xl font-bold md:text-4xl">Soluciones digitales para empresas</h2>
               <p className="mt-3 max-w-xl text-grafito/80">Cada servicio tiene su propia página con todo lo que incluye.</p>
             </div>
             <Link href="/servicios" className="inline-flex items-center gap-2 font-semibold text-azul hover:text-naranja">Ver todos los servicios <ArrowRight size={18} /></Link>

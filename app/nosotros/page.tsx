@@ -19,8 +19,8 @@ export const metadata: Metadata = metaPagina({
 
 const WA = 'https://api.whatsapp.com/send?phone=528131979805&text=Hola%20quiero%20informacion%20de%20los%20servicios%20de%20Dynamedia';
 const cifras = [
-  { n: 15, p: '+', l: 'años de experiencia' }, { n: 289, p: '', l: 'proyectos desarrollados' },
-  { n: 320, p: '', l: 'clientes satisfechos' }, { n: 1590, p: '', l: 'horas de desarrollo' },
+  { n: 15, p: '+', l: 'años de experiencia' }, { n: 320, p: '+', l: 'proyectos desarrollados' },
+  { n: 280, p: '+', l: 'clientes atendidos' }, { n: 4, p: '', l: 'áreas de especialidad' },
 ];
 const palabras = ['Diseño web', 'Software a la medida', 'Ecommerce', 'Crecimiento digital', 'Capacitación', 'Soporte', 'SEO', 'Marketing digital'];
 const pasos = [
