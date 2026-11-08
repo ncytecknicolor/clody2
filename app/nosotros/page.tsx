@@ -52,7 +52,8 @@ export default function Nosotros() {
           <div className="relative mx-auto max-w-6xl px-5">
             <nav aria-label="Ruta de navegación" className="text-sm text-white/70"><Link href="/" className="hover:text-white">Inicio</Link> / Nosotros</nav>
             <h1 className="mt-4 font-display text-[clamp(3rem,10vw,7.5rem)] font-extrabold uppercase leading-none tracking-tight">Somos Dynamedia</h1>
-            <p className="mt-6 max-w-2xl text-xl text-white/85">Desde 2010 desarrollamos sitios web, software y estrategias digitales para empresas de Monterrey y todo México.</p>
+            <p className="mt-6 max-w-3xl font-display text-2xl font-bold leading-snug md:text-4xl">Más que proveedores, somos aliados tecnológicos de tu empresa.</p>
+            <p className="mt-6 max-w-2xl text-lg text-white/85">En Dynamedia combinamos experiencia, estrategia y tecnología para desarrollar soluciones digitales que responden a las necesidades reales de cada negocio. Acompañamos a las empresas en su evolución digital, desde su presencia en internet hasta la optimización de sus procesos.</p>
           </div>
         </section>
 
