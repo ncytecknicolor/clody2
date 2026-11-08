@@ -60,7 +60,7 @@ export default function ServicioPage({ params }: { params: { slug: string } }) {
               <h1 className="mt-3 font-display text-4xl font-extrabold leading-tight md:text-6xl">{s.h1}</h1>
               <p className="mt-6 max-w-2xl text-lg text-white/85">{s.description}</p>
               <div className="mt-8 flex flex-wrap gap-4">
-                <Magnetico><Link href="/#contacto" className="brillo block rounded-full bg-naranja px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:bg-naranja-claro">Cotiza este servicio</Link></Magnetico>
+                <Magnetico><Link href={`/?servicio=${s.slug}#contacto`} className="brillo block rounded-full bg-naranja px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:bg-naranja-claro">Cotiza este servicio</Link></Magnetico>
                 <Magnetico><a href={wa} className="flex items-center gap-2 rounded-full border border-white/40 px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:bg-white/10"><MessageCircle size={18} /> WhatsApp</a></Magnetico>
               </div>
             </div>
@@ -81,7 +81,7 @@ export default function ServicioPage({ params }: { params: { slug: string } }) {
               <Tarjeta className="border border-black/10 bg-white p-8">
                 <h3 className="font-display text-xl font-bold text-azul">Ideal para</h3>
                 <ul className="mt-4 space-y-3">{s.para.map((p) => <li key={p} className="flex gap-2"><Check size={18} className="mt-1 shrink-0 text-naranja" />{p}</li>)}</ul>
-                <Link href="/#contacto" className="mt-6 inline-flex items-center gap-2 font-semibold text-azul hover:text-naranja">Cuéntanos tu caso <ArrowUpRight size={18} /></Link>
+                <Link href={`/?servicio=${s.slug}#contacto`} className="mt-6 inline-flex items-center gap-2 font-semibold text-azul hover:text-naranja">Cuéntanos tu caso <ArrowUpRight size={18} /></Link>
               </Tarjeta>
             </aside>
           </Reveal>
@@ -135,7 +135,7 @@ export default function ServicioPage({ params }: { params: { slug: string } }) {
             <h2 className="mt-3 max-w-3xl font-display text-3xl font-bold md:text-4xl">{s.nombre} en Monterrey, Nuevo León</h2>
             <p className="mt-4 max-w-2xl text-lg text-white/80">Estamos en Monterrey y trabajamos con empresas del área metropolitana y de todo México. Si estás por aquí, cuéntanos tu proyecto y te proponemos la mejor forma de trabajarlo.</p>
             <ul className="mt-6 flex flex-wrap gap-3">{ZONAS.map((z) => <li key={z} className="rounded-full border border-white/25 px-4 py-1.5 text-sm">{z}</li>)}</ul>
-            <div className="mt-8"><Magnetico><Link href="/#contacto" className="brillo block rounded-full bg-naranja px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:bg-naranja-claro">Solicita una cotización</Link></Magnetico></div>
+            <div className="mt-8"><Magnetico><Link href={`/?servicio=${s.slug}#contacto`} className="brillo block rounded-full bg-naranja px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:bg-naranja-claro">Solicita una cotización</Link></Magnetico></div>
           </div>
         </section>
 
@@ -170,7 +170,7 @@ export default function ServicioPage({ params }: { params: { slug: string } }) {
             <h2 className="font-display text-3xl font-bold md:text-5xl">¿Listo para empezar?</h2>
             <p className="mt-4 text-lg text-white/80">Platícanos tu proyecto de {s.nombre.toLowerCase().replace(' (ppc)', '')} y te respondemos pronto.</p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <Magnetico><Link href="/#contacto" className="brillo block rounded-full bg-naranja px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:bg-naranja-claro">Contacto</Link></Magnetico>
+              <Magnetico><Link href={`/?servicio=${s.slug}#contacto`} className="brillo block rounded-full bg-naranja px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:bg-naranja-claro">Contacto</Link></Magnetico>
               <Magnetico><a href={wa} className="flex items-center gap-2 rounded-full border border-white/40 px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:bg-white/10"><MessageCircle size={18} /> WhatsApp</a></Magnetico>
             </div>
           </div>

@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight, Mail, MapPin, MessageCircle } from 'lucide-react';
-import ContactForm from '@/components/ContactForm';
+import { ArrowRight } from 'lucide-react';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import Servicios from '@/components/Servicios';
@@ -12,10 +11,9 @@ import { PorQue, Giros } from '@/components/HomeSecciones';
 import Ticker from '@/components/Ticker';
 import Faq from '@/components/Faq';
 import Footer from '@/components/Footer';
+import SeccionContacto from '@/components/SeccionContacto';
 import Contador from '@/components/Contador';
-import Reveal from '@/components/Reveal';
-import { Magnetico } from '@/components/ui';
-import { SITE, WA, FB, EMAIL, TEL } from '@/lib/site';
+import { SITE, FB, EMAIL, TEL } from '@/lib/site';
 
 export const metadata: Metadata = { alternates: { canonical: '/' } };
 
@@ -85,21 +83,7 @@ export default function Home() {
           <div className="mt-8"><Faq items={faqs} /></div>
         </section>
 
-        <section id="contacto" className="relative overflow-hidden bg-grafito py-20 text-white">
-          <div aria-hidden className="absolute -right-24 -top-24 h-72 w-72 rotate-45 opacity-20" style={{ background: 'linear-gradient(135deg,#F26B21 50%,#1B4F9C 50%)' }} />
-          <div className="relative mx-auto grid max-w-6xl gap-12 px-5 md:grid-cols-2">
-            <Reveal>
-              <h2 className="font-display text-3xl font-bold md:text-4xl">Hablemos de tu proyecto</h2>
-              <p className="mt-4 max-w-md text-white/80">Escríbenos y te respondemos pronto.</p>
-              <ul className="mt-8 space-y-4">
-                <li className="flex items-center gap-3"><Mail className="text-naranja" size={20} /> {EMAIL}</li>
-                <li className="flex items-center gap-3"><MapPin className="text-naranja" size={20} /> Monterrey, Nuevo León</li>
-                <li><Magnetico><a href={WA} className="flex items-center gap-3 hover:text-naranja-claro"><MessageCircle className="text-naranja" size={20} /> Escríbenos por WhatsApp</a></Magnetico></li>
-              </ul>
-            </Reveal>
-            <Reveal delay={150}><ContactForm /></Reveal>
-          </div>
-        </section>
+        <SeccionContacto />
       </main>
       <Footer />
     </>

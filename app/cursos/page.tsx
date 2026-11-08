@@ -158,7 +158,7 @@ export default function Cursos() {
             <p className="mt-4 text-lg text-white/80">Escríbenos y te compartimos fechas, horarios y costos.</p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Magnetico><a href={wa} className="brillo flex items-center gap-2 rounded-full bg-naranja px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:bg-naranja-claro"><MessageCircle size={18} /> WhatsApp</a></Magnetico>
-              <Magnetico><Link href="/#contacto" className="block rounded-full border border-white/40 px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:bg-white/10">Contacto</Link></Magnetico>
+              <Magnetico><Link href="/?servicio=capacitacion#contacto" className="block rounded-full border border-white/40 px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:bg-white/10">Contacto</Link></Magnetico>
             </div>
           </div>
         </section>
