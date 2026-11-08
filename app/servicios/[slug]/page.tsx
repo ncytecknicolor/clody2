@@ -8,7 +8,11 @@ import Faq from '@/components/Faq';
 import IncluyeTabs from '@/components/IncluyeTabs';
 import Reveal from '@/components/Reveal';
 import { Tarjeta, Magnetico, Parallax } from '@/components/ui';
-import { servicios, porSlug } from '@/lib/servicios';
+import { servicios, porSlug, cursosDeServicio, categoriaProyectos } from '@/lib/servicios';
+import { cursoPorSlug } from '@/lib/cursos';
+import { metaPagina } from '@/lib/seo';
+import { NEGOCIO_ID } from '@/lib/schema';
+import ProyectosRelacionados from '@/components/ProyectosRelacionados';
 import { iconos } from '@/lib/iconos';
 import { SITE, WA_BASE, ZONAS } from '@/lib/site';
 
@@ -17,24 +21,22 @@ export function generateStaticParams() { return servicios.map((s) => ({ slug: s.
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const s = porSlug(params.slug);
   if (!s) return {};
-  return {
-    title: s.title, description: s.description, alternates: { canonical: `/servicios/${s.slug}` },
-    openGraph: { title: s.title, description: s.description, url: `/servicios/${s.slug}`, locale: 'es_MX', type: 'website' },
-  };
+  return metaPagina({ title: s.title, description: s.description, path: `/servicios/${s.slug}`, imagen: `/og/servicios-${s.slug}.jpg`, imagenAlt: s.h1 });
 }
 
 export default function ServicioPage({ params }: { params: { slug: string } }) {
   const s = porSlug(params.slug);
   if (!s) notFound();
   const Icono = iconos[s.icono];
+  const cursosSrv = (cursosDeServicio[s.slug] ?? []).flatMap((x) => { const c = cursoPorSlug(x); return c ? [c] : []; });
   const url = `${SITE}/servicios/${s.slug}`;
   const wa = `${WA_BASE}${encodeURIComponent(`Hola, quiero información sobre ${s.nombre} en Monterrey`)}`;
   const grafo = {
     '@context': 'https://schema.org',
     '@graph': [
-      { '@type': 'Service', name: s.h1, serviceType: s.nombre, description: s.description, url,
+      { '@type': 'Service', '@id': `${url}#servicio`, name: s.h1, serviceType: s.nombre, description: s.description, url,
         areaServed: [{ '@type': 'City', name: 'Monterrey' }, { '@type': 'State', name: 'Nuevo León' }],
-        provider: { '@type': 'Organization', name: 'Dynamedia', url: SITE } },
+        provider: { '@id': NEGOCIO_ID } },
       { '@type': 'BreadcrumbList', itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE },
         { '@type': 'ListItem', position: 2, name: 'Servicios', item: `${SITE}/servicios` },
@@ -138,6 +140,32 @@ export default function ServicioPage({ params }: { params: { slug: string } }) {
             <div className="mt-8"><Magnetico><Link href={`/?servicio=${s.slug}#contacto`} className="brillo block rounded-full bg-naranja px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:bg-naranja-claro">Solicita una cotización</Link></Magnetico></div>
           </div>
         </section>
+
+        <ProyectosRelacionados categoria={categoriaProyectos[s.slug]} servicio={s.nombre} />
+
+        {cursosSrv.length > 0 && (
+          <section className="bg-niebla py-16">
+            <div className="mx-auto max-w-6xl px-5">
+              <h2 className="font-display text-3xl font-bold md:text-4xl">¿Prefieres aprender a hacerlo tú?</h2>
+              <p className="mt-3 max-w-2xl text-grafito/80">Si quieres manejar esto por tu cuenta, también ofrecemos cursos presenciales en Monterrey.</p>
+              <div className="mt-8 grid gap-5 md:grid-cols-2">
+                {cursosSrv.map((c) => {
+                  const I = iconos[c.icono];
+                  return (
+                    <Link key={c.slug} href={`/cursos/${c.slug}`} className="block h-full">
+                      <Tarjeta className="h-full border border-black/10 bg-white p-7" inner="relative flex h-full flex-col">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-azul text-white transition-colors group-hover:bg-naranja"><I size={24} /></div>
+                        <h3 className="mt-4 font-display text-xl font-bold text-azul">{c.nombre}</h3>
+                        <p className="mt-2 text-grafito/80">{c.corto}</p>
+                        <span className="mt-auto inline-flex items-center gap-2 pt-5 font-semibold text-naranja">Ver el curso <ArrowUpRight size={18} /></span>
+                      </Tarjeta>
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+        )}
 
         <section className="mx-auto max-w-4xl px-5 py-20">
           <h2 className="font-display text-3xl font-bold md:text-4xl">Preguntas frecuentes</h2>

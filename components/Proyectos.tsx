@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { X, Pause, Play, ArrowUpRight } from 'lucide-react';
 import { proyectos, MOSTRAR_PENDIENTES, type Proyecto } from './proyectos';
 
@@ -26,7 +27,7 @@ function Fila({ items, alto, dir, dur, cta, abrir }: { items: Item[]; alto: stri
                   <span className="mx-auto max-w-[55%] truncate rounded-full bg-white px-3 py-0.5 text-[11px] font-medium text-grafito/60">{p.nombre}</span>
                 </span>
                 <span className="relative block flex-1 overflow-hidden">
-                  <Image src={p.principal.src} fill sizes="560px" alt="" className={`object-cover ${pos === 'left' ? 'object-left-top' : 'object-top'} transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none`} />
+                  <Image src={p.principal.src} fill sizes="560px" alt={c > 0 ? '' : `Captura del sitio web de ${p.nombre}${p.categoria ? `, ${p.categoria.toLowerCase()}` : ''}`} className={`object-cover ${pos === 'left' ? 'object-left-top' : 'object-top'} transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none`} />
                   {p.categoria && <span className="absolute bottom-3 left-3 z-10 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-azul shadow">{p.categoria}</span>}
                   <span className="absolute inset-0 z-20 flex items-center justify-center bg-grafito/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
                     <span className="flex items-center gap-2 rounded-full bg-white px-5 py-2.5 font-semibold text-azul shadow-lg">Ver proyecto <ArrowUpRight size={18} /></span>
@@ -62,12 +63,13 @@ function Bloque({ titulo, ok, children }: { titulo: string; ok: boolean; childre
 
 function Ficha({ p, cerrar }: { p: Proyecto; cerrar: () => void }) {
   const meta = [p.sector, p.solucion ?? p.categoria, p.anio].filter(Boolean).join(' · ');
+  const srv = p.categoria === 'Ecommerce' ? { h: '/servicios/tiendas-virtuales', t: 'Conoce nuestro servicio de tiendas virtuales' } : p.categoria === 'Web corporativa' ? { h: '/servicios/diseno-web', t: 'Conoce nuestro servicio de diseño web' } : null;
   return (
     <article>
       <div className="sticky top-0 z-10 h-0">
         <button onClick={cerrar} aria-label="Cerrar ficha" className="absolute right-3 top-3 rounded-full bg-white/90 p-2 shadow hover:bg-white"><X size={22} /></button>
       </div>
-      <Image src={p.principal.src} width={p.principal.w} height={p.principal.h} alt={`Página de inicio de ${p.nombre}`} className="h-auto w-full" />
+      <Image src={p.principal.src} width={p.principal.w} height={p.principal.h} alt={`Página de inicio del sitio web de ${p.nombre}, proyecto de Dynamedia`} className="h-auto w-full" />
       <div className="p-6 md:p-10">
         <p className="text-sm font-semibold uppercase tracking-widest text-naranja">Proyecto</p>
         <h2 id="ficha-titulo" className="mt-1 font-display text-3xl font-extrabold text-azul md:text-4xl">{p.nombre}</h2>
@@ -103,6 +105,7 @@ function Ficha({ p, cerrar }: { p: Proyecto; cerrar: () => void }) {
               Visitar sitio web <ArrowUpRight size={18} />
             </a>
           ) : MOSTRAR_PENDIENTES && <span className="flex items-center gap-2 text-sm"><Pendiente /> Enlace al sitio</span>}
+          {srv && <Link href={srv.h} onClick={cerrar} className="inline-flex items-center gap-2 font-semibold text-azul hover:text-naranja">{srv.t} <ArrowUpRight size={18} /></Link>}
           <a href="#contacto" onClick={cerrar} className="rounded-full bg-naranja px-6 py-3 font-semibold text-white hover:bg-naranja-claro">Quiero un proyecto así</a>
         </div>
       </div>

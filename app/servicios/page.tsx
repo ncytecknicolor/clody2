@@ -8,13 +8,14 @@ import Reveal from '@/components/Reveal';
 import { Tarjeta, Magnetico, Parallax } from '@/components/ui';
 import { servicios, porSlug } from '@/lib/servicios';
 import { SITE, WA } from '@/lib/site';
+import { metaPagina } from '@/lib/seo';
+import { migas, jsonLd } from '@/lib/schema';
 
-export const metadata: Metadata = {
-  title: 'Servicios de marketing digital y diseño web en Monterrey | Dynamedia',
-  description: 'Diseño web, SEO, Google Ads, redes sociales, tiendas en línea, software a la medida, contenido con IA, capacitación y diseño gráfico en Monterrey, Nuevo León.',
-  alternates: { canonical: '/servicios' },
-  openGraph: { title: 'Servicios de marketing digital y diseño web en Monterrey | Dynamedia', description: 'Todos los servicios de Dynamedia en Monterrey, Nuevo León.', url: '/servicios', locale: 'es_MX', type: 'website' },
-};
+export const metadata: Metadata = metaPagina({
+  title: 'Servicios digitales en Monterrey: web, SEO y software | Dynamedia',
+  description: 'Diseño web, SEO, Google Ads, redes sociales, tiendas en línea, software a la medida y más en Monterrey. Elige tu servicio y cotiza con Dynamedia.',
+  path: '/servicios', imagen: '/og/servicios.jpg',
+});
 
 const objetivos = [
   { t: 'Quiero que más clientes me encuentren', slugs: ['posicionamiento-en-google', 'campanas-pago-por-clic', 'redes-sociales-para-pymes'] },
@@ -30,6 +31,7 @@ export default function Servicios() {
       <Header />
       <main>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(lista) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd({ '@context': 'https://schema.org', ...migas([{ name: 'Inicio', url: SITE }, { name: 'Servicios', url: `${SITE}/servicios` }]) })} />
         <section className="relative overflow-hidden bg-azul-oscuro pb-28 pt-40 text-white md:pb-36 md:pt-52">
           <div aria-hidden className="absolute inset-0 opacity-30" style={{ background: 'radial-gradient(60% 80% at 85% 20%, rgba(242,107,33,.55), transparent 60%)' }} />
           <Parallax className="absolute -right-16 top-1/2 -translate-y-1/2 md:right-16">

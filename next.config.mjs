@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: { formats: ['image/avif', 'image/webp'] },
   // Redirecciones del WordPress anterior (/site/...) para conservar el SEO
   async redirects() {
     return [

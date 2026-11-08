@@ -10,13 +10,14 @@ import { Tarjeta, Magnetico, Parallax, Inclinar } from '@/components/ui';
 import { MockNavegador, BuscadorTyping } from '@/components/Visuales';
 import { cursos, type Curso } from '@/lib/cursos';
 import { SITE, WA_BASE } from '@/lib/site';
+import { metaPagina } from '@/lib/seo';
+import { migas } from '@/lib/schema';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = metaPagina({
   title: 'Cursos de WordPress y SEO en Monterrey | Dynamedia',
-  description: 'Cursos presenciales de WordPress y posicionamiento web en Google en Monterrey, Nuevo León. Aprende a crear, administrar y posicionar tu propio sitio web.',
-  alternates: { canonical: '/cursos' },
-  openGraph: { title: 'Cursos de WordPress y SEO en Monterrey | Dynamedia', description: 'Cursos presenciales en Monterrey, Nuevo León.', url: '/cursos', locale: 'es_MX', type: 'website' },
-};
+  description: 'Cursos presenciales de WordPress y de posicionamiento web en Google en Monterrey, N.L. Aprende a crear y posicionar tu sitio. Pregunta por fechas.',
+  path: '/cursos', imagen: '/og/cursos.jpg',
+});
 
 const pasos = [
   { icon: Presentation, t: 'Explicamos lo esencial', d: 'Sesiones claras, sin tecnicismos innecesarios.' },
@@ -41,6 +42,7 @@ const frases = ['curso de seo en monterrey', 'agencia de marketing digital monte
 export default function Cursos() {
   const wa = `${WA_BASE}${encodeURIComponent('Hola, quiero información sobre los cursos de Dynamedia en Monterrey')}`;
   const grafo = { '@context': 'https://schema.org', '@graph': [
+    migas([{ name: 'Inicio', url: SITE }, { name: 'Cursos', url: `${SITE}/cursos` }]),
     { '@type': 'ItemList', name: 'Cursos de Dynamedia en Monterrey', itemListElement: cursos.map((c, k) => ({ '@type': 'ListItem', position: k + 1, name: c.nombre, url: `${SITE}/cursos/${c.slug}` })) },
     { '@type': 'FAQPage', mainEntity: faqs.map((x) => ({ '@type': 'Question', name: x.q, acceptedAnswer: { '@type': 'Answer', text: x.a } })) },
   ] };

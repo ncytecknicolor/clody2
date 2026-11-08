@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import Header from '@/components/Header';
@@ -14,9 +13,6 @@ import Faq from '@/components/Faq';
 import Footer from '@/components/Footer';
 import SeccionContacto from '@/components/SeccionContacto';
 import Contador from '@/components/Contador';
-import { SITE, FB, EMAIL, TEL } from '@/lib/site';
-
-export const metadata: Metadata = { alternates: { canonical: '/' } };
 
 const cifras = [
   { n: 15, p: '+', l: 'años de experiencia' }, { n: 289, p: '', l: 'proyectos desarrollados' },
@@ -29,16 +25,7 @@ const faqs = [
   { q: '¿Imparten cursos?', a: 'Sí. Ofrecemos cursos presenciales, como el de WordPress y el de posicionamiento web en Google, y talleres para equipos.' },
   { q: '¿Cuánto cuesta un proyecto y cuánto tarda?', a: 'Depende del alcance de cada proyecto. Cuéntanos qué necesitas y te enviamos una cotización con costos y tiempos.' },
 ];
-const grafo = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    { '@type': 'ProfessionalService', name: 'Dynamedia', url: SITE, email: EMAIL, telephone: TEL, image: `${SITE}/brand/logo-dynamedia.png`,
-      description: 'Diseño web, software a la medida y marketing digital en Monterrey, Nuevo León.',
-      address: { '@type': 'PostalAddress', addressLocality: 'Monterrey', addressRegion: 'Nuevo León', addressCountry: 'MX' },
-      areaServed: ['Monterrey', 'Nuevo León', 'México'], sameAs: [FB] },
-    { '@type': 'FAQPage', mainEntity: faqs.map((x) => ({ '@type': 'Question', name: x.q, acceptedAnswer: { '@type': 'Answer', text: x.a } })) },
-  ],
-};
+const grafo = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((x) => ({ '@type': 'Question', name: x.q, acceptedAnswer: { '@type': 'Answer', text: x.a } })) };
 
 export default function Home() {
   return (

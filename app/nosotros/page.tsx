@@ -3,16 +3,19 @@ import Link from 'next/link';
 import { Search, ClipboardList, PenTool, Rocket, LifeBuoy, MessageCircle } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { metaPagina } from '@/lib/seo';
+import { migas, jsonLd, NEGOCIO_ID } from '@/lib/schema';
+import { SITE } from '@/lib/site';
 import TestimoniosTabs from '@/components/TestimoniosTabs';
 import NosotrosTabs from '@/components/NosotrosTabs';
 import Reveal from '@/components/Reveal';
 import Contador from '@/components/Contador';
 
-export const metadata: Metadata = {
-  title: 'Nosotros | Dynamedia',
-  description: 'Desde 2010 desarrollamos sitios web, software a la medida y marketing digital en Monterrey. Conoce nuestra misión, visión, valores y experiencia.',
-  alternates: { canonical: '/nosotros' },
-};
+export const metadata: Metadata = metaPagina({
+  title: 'Somos Dynamedia: diseño web y software en Monterrey',
+  description: 'Somos Dynamedia: desde 2010 desarrollamos sitios web, software a la medida y estrategias de marketing digital en Monterrey. Conoce nuestra historia.',
+  path: '/nosotros', imagen: '/og/nosotros.jpg',
+});
 
 const WA = 'https://api.whatsapp.com/send?phone=528131979805&text=Hola%20quiero%20informacion%20de%20los%20servicios%20de%20Dynamedia';
 const cifras = [
@@ -28,11 +31,17 @@ const pasos = [
   { icon: LifeBuoy, t: 'Te acompañamos', d: 'Soporte, actualización y capacitación para que tu equipo sea autónomo.' },
 ];
 
+const grafo = { '@context': 'https://schema.org', '@graph': [
+  { '@type': 'AboutPage', '@id': `${SITE}/nosotros#pagina`, url: `${SITE}/nosotros`, name: 'Somos Dynamedia', about: { '@id': NEGOCIO_ID }, isPartOf: { '@id': `${SITE}/#sitio` } },
+  migas([{ name: 'Inicio', url: SITE }, { name: 'Nosotros', url: `${SITE}/nosotros` }]),
+] };
+
 export default function Nosotros() {
   return (
     <>
       <Header />
       <main>
+        <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(grafo)} />
         <section className="relative overflow-hidden bg-azul-oscuro pb-28 pt-40 text-white md:pb-36 md:pt-52">
           <div aria-hidden className="absolute -right-24 top-1/2 -translate-y-1/2 opacity-60 md:right-16 md:opacity-100">
             <div className="flota h-72 w-72 md:h-[26rem] md:w-[26rem]" style={{ background: 'linear-gradient(135deg,#F26B21 50%,#1B4F9C 50%)' }} />
@@ -42,7 +51,7 @@ export default function Nosotros() {
           </div>
           <div className="relative mx-auto max-w-6xl px-5">
             <nav aria-label="Ruta de navegación" className="text-sm text-white/70"><Link href="/" className="hover:text-white">Inicio</Link> / Nosotros</nav>
-            <h1 className="mt-4 font-display text-[clamp(3rem,10vw,7.5rem)] font-extrabold uppercase leading-none tracking-tight">Nosotros</h1>
+            <h1 className="mt-4 font-display text-[clamp(3rem,10vw,7.5rem)] font-extrabold uppercase leading-none tracking-tight">Somos Dynamedia</h1>
             <p className="mt-6 max-w-2xl text-xl text-white/85">Desde 2010 desarrollamos sitios web, software y estrategias digitales para empresas de Monterrey y todo México.</p>
           </div>
         </section>
@@ -74,6 +83,10 @@ export default function Nosotros() {
           <div className="mx-auto max-w-6xl px-5">
             <h2 className="font-display text-3xl font-bold md:text-4xl">Cómo trabajamos</h2>
             <p className="mt-3 max-w-xl text-grafito/80">Un proceso claro, de la primera conversación al soporte posterior.</p>
+            <div className="mt-5 flex flex-wrap gap-6 font-semibold text-azul">
+              <Link href="/servicios" className="hover:text-naranja">Conoce nuestros servicios →</Link>
+              <Link href="/#proyectos" className="hover:text-naranja">Mira nuestros proyectos →</Link>
+            </div>
             <ol className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
               {pasos.map(({ icon: Icon, t, d }, k) => (
                 <li key={t}>

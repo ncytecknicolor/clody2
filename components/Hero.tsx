@@ -46,6 +46,7 @@ export default function Hero() {
             <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/40" />
             {s.velo && <div className="absolute inset-0" style={{ background: s.velo }} />}
             <div className="relative flex h-full flex-col items-center justify-center px-6 pt-24 text-center">
+              {s.eyebrow && <p className="mb-5 text-xs font-semibold uppercase tracking-[0.25em] text-white/90 md:text-sm">{s.eyebrow}</p>}
               <H className="font-display text-[clamp(2.25rem,8vw,6.5rem)] font-extrabold uppercase leading-[0.95] tracking-tight">
                 {s.titulo.map((l) => <span key={l} className="block">{l}</span>)}
               </H>

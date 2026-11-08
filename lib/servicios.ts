@@ -22,7 +22,7 @@ export const servicios: Servicio[] = [
     corto: 'Anuncios en Google y redes que aparecen justo cuando alguien busca lo que vendes.',
     h1: 'Campañas de pago por clic (Google Ads) en Monterrey',
     title: 'Publicidad en Google Ads en Monterrey, N.L. | Dynamedia',
-    description: 'Campañas de pago por clic en Google Ads y redes sociales para empresas de Monterrey, Nuevo León. Atrae clientes potenciales y mide cada peso invertido.',
+    description: 'Campañas de Google Ads y redes sociales en Monterrey: atrae clientes potenciales y mide cada peso invertido. Cotiza tu campaña con Dynamedia.',
     intro: [
       'La publicidad de pago por clic (PPC) te permite aparecer en los primeros resultados de Google y en redes sociales justo cuando una persona en Monterrey busca lo que tú ofreces. Solo pagas cuando alguien hace clic en tu anuncio, y puedes empezar a recibir visitas y contactos en cuanto la campaña está activa.',
       'En Dynamedia diseñamos, publicamos y optimizamos campañas en Google Ads y en redes sociales, con anuncios y páginas de destino pensadas para convertir visitas en llamadas, mensajes de WhatsApp y cotizaciones.',
@@ -55,7 +55,7 @@ export const servicios: Servicio[] = [
     corto: 'Que te encuentren en Google cuando buscan lo que vendes en Monterrey.',
     h1: 'Posicionamiento SEO en Monterrey, Nuevo León',
     title: 'Posicionamiento SEO en Monterrey, N.L. | Dynamedia',
-    description: 'Servicio de posicionamiento web y SEO local en Monterrey, Nuevo León. Mejora tu visibilidad en Google y atrae clientes que ya te están buscando.',
+    description: 'Posicionamiento SEO y SEO local en Monterrey, N.L. Haz que tus clientes te encuentren en Google y Google Maps. Solicita tu cotización.',
     intro: [
       'El posicionamiento SEO (optimización para buscadores) busca que tu sitio aparezca en Google cuando las personas buscan los productos o servicios que ofreces, sin pagar por cada visita. Para una empresa de Monterrey, el SEO local es la forma de ser encontrada por clientes de la ciudad y de su área metropolitana.',
       'En Dynamedia analizamos tu sitio, definimos las palabras clave que realmente usan tus clientes y trabajamos el contenido, la estructura técnica y tu presencia en Google Maps. Es un trabajo de mediano plazo y no prometemos posiciones específicas: trabajamos para mejorar tu visibilidad y la medimos con reportes claros.',
@@ -88,7 +88,7 @@ export const servicios: Servicio[] = [
     corto: 'Textos, imágenes y video para tus redes y tu blog, con IA y revisión humana.',
     h1: 'Creación de contenido con inteligencia artificial en Monterrey',
     title: 'Creación de contenido con IA en Monterrey | Dynamedia',
-    description: 'Contenido para redes sociales, blog y correo creado con inteligencia artificial y revisión humana para empresas de Monterrey, Nuevo León.',
+    description: 'Contenido para redes, blog y correo creado con IA y revisión humana en Monterrey. Publica más y mejor sin saturar a tu equipo. Cotiza hoy.',
     intro: [
       'Publicar con constancia es difícil para una pyme. La inteligencia artificial permite producir textos, imágenes y guiones de video en menos tiempo, y la revisión humana asegura que cada pieza suene a tu marca, tenga datos correctos y cumpla un objetivo.',
       'En Dynamedia creamos contenido con IA para redes sociales, blog, correo y anuncios, adaptado al tono de tu empresa y al público de Monterrey y Nuevo León.',
@@ -121,7 +121,7 @@ export const servicios: Servicio[] = [
     corto: 'Una identidad profesional que conecta tu negocio con el cliente ideal.',
     h1: 'Manejo de redes sociales para pymes en Monterrey',
     title: 'Manejo de redes sociales para pymes en Monterrey | Dynamedia',
-    description: 'Administración de redes sociales, diseño de contenido y campañas para pymes de Monterrey, Nuevo León. Una identidad profesional que conecta con tu cliente ideal.',
+    description: 'Manejo de redes sociales para pymes en Monterrey: identidad, contenido y campañas que conectan con tu cliente ideal. Pide tu cotización.',
     intro: [
       'Tener perfiles abiertos no es lo mismo que tener presencia en redes sociales. Una pyme necesita una identidad clara, publicaciones constantes y mensajes que lleguen al cliente indicado.',
       'En Dynamedia generamos propuestas de valor que unen a tu empresa con el segmento ideal mediante una identidad profesional: diseñamos tu imagen en redes, planeamos el contenido, publicamos y medimos los resultados para pymes de Monterrey y Nuevo León.',
@@ -154,7 +154,7 @@ export const servicios: Servicio[] = [
     corto: 'Sitios web funcionales, atractivos y estratégicos que fortalecen tu marca.',
     h1: 'Diseño de páginas web en Monterrey, Nuevo León',
     title: 'Diseño de páginas web en Monterrey, N.L. | Dynamedia',
-    description: 'Diseño y desarrollo de páginas web corporativas y landing pages en Monterrey, Nuevo León. Sitios funcionales, rápidos y preparados para Google.',
+    description: 'Diseño de páginas web en Monterrey, N.L.: sitios rápidos, atractivos y listos para Google que generan clientes. Solicita tu cotización.',
     intro: [
       'Tu sitio web es tu oficina abierta las 24 horas. Debe verse profesional, cargar rápido, funcionar bien en celular y explicar con claridad qué haces y cómo contactarte.',
       'Desde 2010 diseñamos y desarrollamos sitios web funcionales, atractivos y estratégicos que fortalecen tu marca y generan oportunidades comerciales para empresas de Monterrey y Nuevo León.',
@@ -187,7 +187,7 @@ export const servicios: Servicio[] = [
     corto: 'Tiendas en línea que facilitan la compra, la administración y el crecimiento.',
     h1: 'Tiendas en línea y ecommerce en Monterrey, Nuevo León',
     title: 'Tiendas en línea y ecommerce en Monterrey | Dynamedia',
-    description: 'Desarrollo de tiendas virtuales con pagos en línea, envíos y catálogo para empresas de Monterrey, Nuevo León. Vende por internet desde el primer día.',
+    description: 'Creamos tiendas en línea en Monterrey con pagos, envíos y catálogo listos para vender desde el primer día. Cotiza tu ecommerce.',
     intro: [
       'Vender por internet exige más que subir productos: necesitas un catálogo claro, un proceso de compra sencillo, formas de pago confiables y control de pedidos y envíos.',
       'Creamos tiendas en línea que facilitan la compra, la administración y el crecimiento de tu negocio, para marcas y comercios de Monterrey y de todo México.',
@@ -220,7 +220,7 @@ export const servicios: Servicio[] = [
     corto: 'Sistemas y herramientas diseñados alrededor de los procesos de tu empresa.',
     h1: 'Desarrollo de software a la medida en Monterrey, Nuevo León',
     title: 'Desarrollo de software a la medida en Monterrey | Dynamedia',
-    description: 'Sistemas administrativos, inventarios, CRM y automatización a la medida para empresas de Monterrey, Nuevo León. Tecnología diseñada alrededor de tu negocio.',
+    description: 'Software a la medida en Monterrey: sistemas administrativos, inventarios, CRM y automatización hechos para tu empresa. Agenda tu cotización.',
     intro: [
       'Cuando una empresa crece, las hojas de cálculo y los procesos manuales empiezan a frenarla. El software a la medida se adapta a tu forma de trabajar, y no al revés.',
       'Desarrollamos sistemas y herramientas digitales adaptados a los procesos y necesidades de cada empresa: desde un sistema de inventarios hasta un CRM o una plataforma empresarial, para empresas de Monterrey y Nuevo León.',
@@ -253,7 +253,7 @@ export const servicios: Servicio[] = [
     corto: 'Cursos presenciales y talleres para que tu equipo domine las herramientas digitales.',
     h1: 'Cursos y capacitación digital en Monterrey, Nuevo León',
     title: 'Cursos y capacitación digital en Monterrey | Dynamedia',
-    description: 'Cursos presenciales de WordPress y posicionamiento web en Google, y talleres de marketing digital en Monterrey, Nuevo León, para equipos y particulares.',
+    description: 'Cursos presenciales de WordPress y SEO en Monterrey, y talleres de marketing digital para equipos. Pregunta por fechas y capacitación a la medida.',
     intro: [
       'Una página o una campaña rinde más cuando tu equipo sabe manejarla. Impartimos talleres para que personas y empresas aprendan a crear, administrar y posicionar sus propios sitios.',
       'Ofrecemos cursos presenciales en Monterrey, como el curso de WordPress y el de posicionamiento web en Google, y también capacitación a la medida para equipos de trabajo.',
@@ -286,7 +286,7 @@ export const servicios: Servicio[] = [
     corto: 'Logotipos, empaques, diseño editorial y material POP para una marca que se recuerda.',
     h1: 'Diseño gráfico y branding en Monterrey, Nuevo León',
     title: 'Diseño gráfico y branding en Monterrey, N.L. | Dynamedia',
-    description: 'Logotipos, empaques, diseño editorial y material POP para empresas de Monterrey, Nuevo León. Creamos experiencias que hacen que tu marca se recuerde.',
+    description: 'Diseño de logotipos, empaques, material POP y diseño editorial en Monterrey, N.L. Haz que tu marca se recuerde. Pide tu cotización.',
     intro: [
       'Tu marca es lo primero que ven tus clientes. Un buen diseño la hace reconocible, transmite confianza y mantiene una imagen consistente en todos tus medios.',
       'En Dynamedia creamos experiencias a través de logotipos, empaques, diseño editorial, material POP e impresos de todo tipo para empresas de Monterrey y Nuevo León.',
@@ -317,3 +317,11 @@ export const servicios: Servicio[] = [
 ];
 
 export const porSlug = (slug: string) => servicios.find((s) => s.slug === slug);
+
+// Enlaces internos: qué cursos y qué tipo de proyectos se muestran en cada página de servicio.
+export const cursosDeServicio: Record<string, string[]> = {
+  'posicionamiento-en-google': ['posicionamiento-en-google'],
+  'diseno-web': ['wordpress-monterrey'],
+  capacitacion: ['wordpress-monterrey', 'posicionamiento-en-google'],
+};
+export const categoriaProyectos: Record<string, string> = { 'diseno-web': 'Web corporativa', 'tiendas-virtuales': 'Ecommerce' };

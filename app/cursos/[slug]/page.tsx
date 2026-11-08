@@ -14,14 +14,15 @@ import { cursos, cursoPorSlug } from '@/lib/cursos';
 import { porSlug } from '@/lib/servicios';
 import { iconos } from '@/lib/iconos';
 import { SITE, WA_BASE } from '@/lib/site';
+import { metaPagina } from '@/lib/seo';
+import { NEGOCIO_ID } from '@/lib/schema';
 
 export function generateStaticParams() { return cursos.map((c) => ({ slug: c.slug })); }
 
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const c = cursoPorSlug(params.slug);
   if (!c) return {};
-  return { title: c.title, description: c.description, alternates: { canonical: `/cursos/${c.slug}` },
-    openGraph: { title: c.title, description: c.description, url: `/cursos/${c.slug}`, locale: 'es_MX', type: 'website' } };
+  return metaPagina({ title: c.title, description: c.description, path: `/cursos/${c.slug}`, imagen: `/og/cursos-${c.slug}.jpg`, imagenAlt: c.h1 });
 }
 
 const frases = ['curso de seo en monterrey', 'cómo posicionar mi sitio en google', 'seo local monterrey', 'cómo salir en google maps'];
@@ -35,7 +36,7 @@ export default function CursoPage({ params }: { params: { slug: string } }) {
   const serv = porSlug(c.servicio)!;
   const Icono = iconos[c.icono];
   const grafo = { '@context': 'https://schema.org', '@graph': [
-    { '@type': 'Course', name: c.h1, description: c.description, url, inLanguage: 'es-MX', provider: { '@type': 'Organization', name: 'Dynamedia', url: SITE },
+    { '@type': 'Course', name: c.h1, description: c.description, url, inLanguage: 'es-MX', provider: { '@id': NEGOCIO_ID },
       hasCourseInstance: { '@type': 'CourseInstance', courseMode: 'onsite', location: { '@type': 'Place', name: 'Monterrey, Nuevo León', address: { '@type': 'PostalAddress', addressLocality: 'Monterrey', addressRegion: 'Nuevo León', addressCountry: 'MX' } } } },
     { '@type': 'BreadcrumbList', itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE }, { '@type': 'ListItem', position: 2, name: 'Cursos', item: `${SITE}/cursos` }, { '@type': 'ListItem', position: 3, name: c.nombre, item: url } ] },

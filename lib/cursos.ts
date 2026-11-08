@@ -21,7 +21,7 @@ export const cursos: Curso[] = [
     corto: 'Aprende a crear y administrar tu propio sitio web, paso a paso y sin saber programar.',
     h1: 'Curso de WordPress en Monterrey, Nuevo León',
     title: 'Curso de WordPress en Monterrey, N.L. | Dynamedia',
-    description: 'Curso presencial de WordPress en Monterrey, Nuevo León: aprende a crear y administrar tu propio sitio web paso a paso, sin saber programar.',
+    description: 'Curso presencial de WordPress en Monterrey, N.L.: crea y administra tu propio sitio web paso a paso, sin saber programar. Pregunta por fechas.',
     intro: [
       'WordPress es una de las plataformas más usadas para crear sitios web, y permite que una persona sin conocimientos de programación publique, edite y mantenga su propia página.',
       'En este curso presencial en Monterrey aprendes desde cero a montar tu sitio, personalizar su diseño, agregar funciones y mantenerlo seguro, con práctica guiada por un equipo que desarrolla sitios web desde 2010.',
@@ -57,7 +57,7 @@ export const cursos: Curso[] = [
     corto: 'Aprende a mejorar la visibilidad de tu sitio en Google y a medir si funciona.',
     h1: 'Curso de posicionamiento web en Google en Monterrey',
     title: 'Curso de posicionamiento web en Google, Monterrey | Dynamedia',
-    description: 'Curso presencial de SEO y posicionamiento en Google en Monterrey, Nuevo León: aprende a mejorar la visibilidad de tu sitio y a medir resultados.',
+    description: 'Curso presencial de SEO y posicionamiento en Google en Monterrey, N.L.: mejora la visibilidad de tu sitio y mide resultados. Pregunta por fechas.',
     intro: [
       'El posicionamiento web (SEO) ayuda a que tu sitio aparezca cuando las personas buscan lo que ofreces. No es magia ni se compra: se construye con una estrategia y con trabajo constante.',
       'En este curso presencial en Monterrey aprendes cómo funciona Google, cómo elegir palabras clave, cómo optimizar tu sitio y cómo medir resultados, con énfasis en el SEO local para negocios de Monterrey y Nuevo León.',
