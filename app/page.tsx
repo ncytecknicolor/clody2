@@ -5,6 +5,7 @@ import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import Servicios from '@/components/Servicios';
 import Proyectos from '@/components/Proyectos';
+import Testimonios from '@/components/Testimonios';
 import ExploraServicios from '@/components/ExploraServicios';
 import CursosSoporte from '@/components/CursosSoporte';
 import { PorQue, Giros } from '@/components/HomeSecciones';
@@ -74,6 +75,7 @@ export default function Home() {
         </section>
 
         <Proyectos />
+        <Testimonios />
         <PorQue />
         <Giros />
         <CursosSoporte />

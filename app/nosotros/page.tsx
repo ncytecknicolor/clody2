@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Search, ClipboardList, PenTool, Rocket, LifeBuoy, MessageCircle } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import TestimoniosTabs from '@/components/TestimoniosTabs';
 import NosotrosTabs from '@/components/NosotrosTabs';
 import Reveal from '@/components/Reveal';
 import Contador from '@/components/Contador';
@@ -89,6 +90,8 @@ export default function Nosotros() {
             </ol>
           </div>
         </section>
+
+        <TestimoniosTabs />
 
         <section className="bg-azul-oscuro py-20 text-center text-white">
           <div className="mx-auto max-w-3xl px-5">
