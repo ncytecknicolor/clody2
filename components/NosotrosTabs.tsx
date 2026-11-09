@@ -29,7 +29,7 @@ const valores = [
 ];
 const sectores = [
   { icon: Store, t: 'Tiendas departamentales' }, { icon: Factory, t: 'Industriales' }, { icon: Briefcase, t: 'Servicios' },
-  { icon: Newspaper, t: 'Periódicos digitales' }, { icon: Globe, t: 'Sitios informativos' },
+  { icon: Newspaper, t: 'Periódicos digitales' }, { icon: Globe, t: 'Sitios informativos' }, { icon: GraduationCap, t: 'Educación y capacitación' },
 ];
 
 // Tarjeta con luz que sigue al cursor
@@ -137,8 +137,8 @@ export default function NosotrosTabs() {
 
         <div {...panel(3)}>
           <h2 className="font-display text-3xl font-bold md:text-4xl">Empresas que confían en nosotros</h2>
-          <p className="mt-4 max-w-3xl text-lg text-grafito/85">Entre las empresas que nos han brindado su confianza se encuentran tiendas departamentales, industriales y de servicios, así como periódicos digitales y sitios informativos.</p>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          <p className="mt-4 max-w-3xl text-lg text-grafito/85">Entre las empresas que nos han brindado su confianza se encuentran tiendas departamentales, industriales y de servicios, así como periódicos digitales, sitios informativos y proyectos de educación y capacitación.</p>
+          <div className="mt-8 grid gap-4 sm:grid-cols-3 lg:grid-cols-6">
             {sectores.map(({ icon: Icon, t }) => (
               <Tarjeta key={t} className="text-center"><div className="mx-auto flex h-12 w-12 items-center justify-center rounded-lg bg-azul text-white transition-colors group-hover:bg-naranja"><Icon size={24} /></div><p className="mt-4 font-semibold text-azul">{t}</p></Tarjeta>
             ))}

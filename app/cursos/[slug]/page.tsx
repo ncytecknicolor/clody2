@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowUpRight, Check, MapPin, ListChecks, CalendarDays, MessageCircle } from 'lucide-react';
+import { ArrowUpRight, Check, Laptop, ListChecks, CalendarDays, MessageCircle } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Faq from '@/components/Faq';
@@ -37,7 +37,7 @@ export default function CursoPage({ params }: { params: { slug: string } }) {
   const Icono = iconos[c.icono];
   const grafo = { '@context': 'https://schema.org', '@graph': [
     { '@type': 'Course', name: c.h1, description: c.description, url, inLanguage: 'es-MX', provider: { '@id': NEGOCIO_ID },
-      hasCourseInstance: { '@type': 'CourseInstance', courseMode: 'onsite', location: { '@type': 'Place', name: 'Monterrey, Nuevo León', address: { '@type': 'PostalAddress', addressLocality: 'Monterrey', addressRegion: 'Nuevo León', addressCountry: 'MX' } } } },
+      hasCourseInstance: { '@type': 'CourseInstance', courseMode: 'online' } },
     { '@type': 'BreadcrumbList', itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE }, { '@type': 'ListItem', position: 2, name: 'Cursos', item: `${SITE}/cursos` }, { '@type': 'ListItem', position: 3, name: c.nombre, item: url } ] },
     { '@type': 'FAQPage', mainEntity: c.faqs.map((x) => ({ '@type': 'Question', name: x.q, acceptedAnswer: { '@type': 'Answer', text: x.a } })) },
@@ -62,11 +62,11 @@ export default function CursoPage({ params }: { params: { slug: string } }) {
               <nav aria-label="Ruta de navegación" className="text-sm text-white/70">
                 <Link href="/" className="hover:text-white">Inicio</Link> / <Link href="/cursos" className="hover:text-white">Cursos</Link> / {c.nombre}
               </nav>
-              <p className="mt-6 text-sm font-semibold uppercase tracking-widest text-naranja-claro">Curso presencial · Monterrey, Nuevo León</p>
+              <p className="mt-6 text-sm font-semibold uppercase tracking-widest text-naranja-claro">Curso en línea</p>
               <h1 className="mt-3 font-display text-4xl font-extrabold leading-tight md:text-6xl">{c.h1}</h1>
               <p className="mt-6 max-w-2xl text-lg text-white/85">{c.description}</p>
               <ul className="mt-6 flex flex-wrap gap-3 text-sm">
-                {['Presencial', 'Monterrey, N.L.', 'Práctica guiada'].map((x) => <li key={x} className="rounded-full border border-white/25 px-4 py-1.5">{x}</li>)}
+                {['En línea', 'Práctica guiada', 'Material de apoyo'].map((x) => <li key={x} className="rounded-full border border-white/25 px-4 py-1.5">{x}</li>)}
               </ul>
               <div className="mt-8 flex flex-wrap gap-4">
                 <Magnetico><a href={wa} className="brillo flex items-center gap-2 rounded-full bg-naranja px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:bg-naranja-claro"><MessageCircle size={18} /> Pregunta por fechas</a></Magnetico>
@@ -90,7 +90,7 @@ export default function CursoPage({ params }: { params: { slug: string } }) {
               <Tarjeta className="border border-black/10 bg-white p-8">
                 <h3 className="font-display text-xl font-bold text-azul">Datos del curso</h3>
                 <ul className="mt-5 space-y-4">
-                  <li className="flex gap-3"><MapPin size={20} className="mt-0.5 shrink-0 text-naranja" /><span><strong>Modalidad:</strong> presencial en Monterrey, N.L.</span></li>
+                  <li className="flex gap-3"><Laptop size={20} className="mt-0.5 shrink-0 text-naranja" /><span><strong>Modalidad:</strong> en línea, desde donde estés</span></li>
                   <li className="flex gap-3"><ListChecks size={20} className="mt-0.5 shrink-0 text-naranja" /><span><strong>Contenido:</strong> {c.temario.length} módulos prácticos</span></li>
                   <li className="flex gap-3"><CalendarDays size={20} className="mt-0.5 shrink-0 text-naranja" /><span><strong>Fechas y costo:</strong> pregúntanos y te respondemos pronto</span></li>
                 </ul>

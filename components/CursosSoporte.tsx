@@ -4,7 +4,7 @@ import { Tarjeta } from './ui';
 import Reveal from './Reveal';
 
 const cursos = [
-  { t: 'Curso de WordPress en Monterrey', d: 'Aprende a crear y administrar tu propio sitio web.', h: '/cursos/wordpress-monterrey' },
+  { t: 'Curso de WordPress en línea', d: 'Aprende a crear y administrar tu propio sitio web.', h: '/cursos/wordpress-monterrey' },
   { t: 'Curso de posicionamiento web en Google', d: 'Aprende a mejorar la visibilidad de tu sitio en buscadores.', h: '/cursos/posicionamiento-en-google' },
 ];
 const soporte = ['Soporte para el manejo de tu sitio', 'Actualización de contenidos', 'Resolución de problemas en tu página o sistema', 'Pólizas de soporte (pregunta por ellas)'];
@@ -17,7 +17,7 @@ export default function CursosSoporte() {
           <div id="cursos" className="h-full scroll-mt-24">
             <Tarjeta className="h-full border border-black/10 bg-white p-8 md:p-10" inner="relative flex h-full flex-col">
               <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-azul text-white transition-colors group-hover:bg-naranja"><GraduationCap size={28} /></div>
-              <p className="mt-6 text-sm font-semibold uppercase tracking-widest text-naranja">Cursos presenciales</p>
+              <p className="mt-6 text-sm font-semibold uppercase tracking-widest text-naranja">Cursos en línea</p>
               <h2 className="mt-1 font-display text-2xl font-bold text-azul md:text-3xl">Aprende a crear y posicionar tu propio sitio</h2>
               <p className="mt-3 text-grafito/80">Capacitamos a equipos y a particulares que quieren crear o mantener páginas de internet.</p>
               <ul className="mt-6 space-y-3">

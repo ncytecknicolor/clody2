@@ -5,6 +5,7 @@ const nextConfig = {
   async redirects() {
     return [
       { source: '/site', destination: '/', permanent: true },
+      { source: '/areas/desarrollo-web', destination: '/areas/diseno-web', permanent: true },
       { source: '/site/contacto', destination: '/#contacto', permanent: true },
       { source: '/site/cursos', destination: '/cursos', permanent: true },
       { source: '/site/asesoria-soporte-tecnico-paginas-web', destination: '/#soporte', permanent: true },

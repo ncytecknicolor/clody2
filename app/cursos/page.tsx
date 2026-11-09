@@ -14,8 +14,8 @@ import { metaPagina } from '@/lib/seo';
 import { migas } from '@/lib/schema';
 
 export const metadata: Metadata = metaPagina({
-  title: 'Cursos de WordPress y SEO en Monterrey | Dynamedia',
-  description: 'Cursos presenciales de WordPress y de posicionamiento web en Google en Monterrey, N.L. Aprende a crear y posicionar tu sitio. Pregunta por fechas.',
+  title: 'Cursos en línea de WordPress y SEO | Dynamedia',
+  description: 'Cursos en línea de WordPress y de posicionamiento web en Google de Dynamedia (Monterrey, N.L.). Aprende a crear y posicionar tu sitio. Pregunta por fechas.',
   path: '/cursos', imagen: '/og/cursos.jpg',
 });
 
@@ -32,12 +32,12 @@ const filas: { t: string; v: (c: Curso) => string }[] = [
   { t: 'Contenido', v: (c) => `${c.temario.length} módulos` },
 ];
 const faqs = [
-  { q: '¿Los cursos son presenciales?', a: 'Sí. Nuestros cursos de WordPress y de posicionamiento web son presenciales, en Monterrey, Nuevo León.' },
+  { q: '¿Los cursos son en línea?', a: 'Sí. Nuestros cursos de WordPress y de posicionamiento web son en línea, para que los tomes desde donde estés.' },
   { q: '¿Puedo tomar los dos cursos?', a: 'Sí. Se complementan: primero creas o administras tu sitio con WordPress y después aprendes a posicionarlo en Google.' },
   { q: '¿Capacitan a equipos de empresas?', a: 'Podemos preparar talleres a la medida de tu equipo. Cuéntanos tus objetivos y te proponemos un temario.' },
   { q: '¿Cuánto cuestan y cuándo son las próximas fechas?', a: 'Pregúntanos por fechas, horarios y costos; te respondemos por WhatsApp o por correo.' },
 ];
-const frases = ['curso de seo en monterrey', 'agencia de marketing digital monterrey', 'cómo salir en google maps', 'diseño web monterrey'];
+const frases = ['curso de seo en línea', 'agencia de marketing digital monterrey', 'cómo salir en google maps', 'diseño web monterrey'];
 
 export default function Cursos() {
   const wa = `${WA_BASE}${encodeURIComponent('Hola, quiero información sobre los cursos de Dynamedia en Monterrey')}`;
@@ -58,9 +58,9 @@ export default function Cursos() {
           </Parallax>
           <div className="relative mx-auto max-w-6xl px-5">
             <nav aria-label="Ruta de navegación" className="text-sm text-white/70"><Link href="/" className="hover:text-white">Inicio</Link> / Cursos</nav>
-            <p className="mt-6 text-sm font-semibold uppercase tracking-widest text-naranja-claro">Cursos presenciales · Monterrey, Nuevo León</p>
-            <h1 className="mt-3 max-w-3xl font-display text-4xl font-extrabold leading-tight md:text-6xl">Cursos de WordPress y posicionamiento en Google en Monterrey</h1>
-            <p className="mt-6 max-w-2xl text-xl text-white/85">Aprende a crear, administrar y posicionar tu propio sitio web con práctica guiada, en persona.</p>
+            <p className="mt-6 text-sm font-semibold uppercase tracking-widest text-naranja-claro">Cursos en línea</p>
+            <h1 className="mt-3 max-w-3xl font-display text-4xl font-extrabold leading-tight md:text-6xl">Cursos en línea de WordPress y posicionamiento en Google</h1>
+            <p className="mt-6 max-w-2xl text-xl text-white/85">Aprende a crear, administrar y posicionar tu propio sitio web con práctica guiada, desde donde estés.</p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Magnetico><a href="#cursos-disponibles" className="brillo block rounded-full bg-naranja px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:bg-naranja-claro">Ver los cursos</a></Magnetico>
               <Magnetico><a href={wa} className="flex items-center gap-2 rounded-full border border-white/40 px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:bg-white/10"><MessageCircle size={18} /> Pregunta por fechas</a></Magnetico>
@@ -81,7 +81,7 @@ export default function Cursos() {
                         {c.visual === 'navegador' ? <MockNavegador /> : <BuscadorTyping frases={frases} />}
                       </div>
                       <div className="flex flex-1 flex-col p-8">
-                        <p className="text-sm font-semibold uppercase tracking-widest text-naranja">Curso presencial · Monterrey</p>
+                        <p className="text-sm font-semibold uppercase tracking-widest text-naranja">Curso en línea</p>
                         <h3 className="mt-1 font-display text-2xl font-bold text-azul">{c.nombre}</h3>
                         <p className="mt-2 text-grafito/80">{c.corto}</p>
                         <ul className="mt-5 space-y-2">{c.aprenderas.slice(0, 3).map((a) => <li key={a} className="flex gap-2 text-sm"><Check size={18} className="mt-0.5 shrink-0 text-naranja" />{a}</li>)}</ul>

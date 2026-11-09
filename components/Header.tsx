@@ -11,7 +11,7 @@ const links: Item[] = [
   { t: 'Inicio', h: '/' },
   { t: 'Nosotros', h: '/nosotros' },
   { t: 'Servicios', h: '/servicios', sub: [{ t: 'Ver todos los servicios', h: '/servicios' }, ...servicios.map((s) => ({ t: s.nombre, h: `/servicios/${s.slug}` }))] },
-  { t: 'Cursos', h: '/cursos', sub: [{ t: 'Curso de WordPress en Monterrey', h: '/cursos/wordpress-monterrey' }, { t: 'Curso de posicionamiento en Google', h: '/cursos/posicionamiento-en-google' }] },
+  { t: 'Cursos', h: '/cursos', sub: [{ t: 'Curso de WordPress en línea', h: '/cursos/wordpress-monterrey' }, { t: 'Curso de posicionamiento en Google', h: '/cursos/posicionamiento-en-google' }] },
   { t: 'Asesoría y soporte', h: '/#soporte' },
   { t: 'Contacto', h: '/#contacto' },
 ];

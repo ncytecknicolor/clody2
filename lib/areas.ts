@@ -14,14 +14,14 @@ const f = (q: string, a: string): Faq => ({ q, a });
 // Las 4 áreas de trabajo del inicio. Titular, texto y lista salen de tu información; el resto (intro, beneficios, pasos, preguntas) es propuesta.
 export const areas: Area[] = [
   {
-    slug: 'desarrollo-web', n: '01', nombre: 'Desarrollo web', icono: 'Globe',
+    slug: 'diseno-web', n: '01', nombre: 'Diseño web', icono: 'Globe',
     titulo: 'Tu empresa merece una presencia digital profesional.',
     texto: 'Diseñamos y desarrollamos sitios web funcionales, atractivos y estratégicos que fortalecen tu marca y generan oportunidades comerciales.',
     lista: ['Diseño y desarrollo de páginas web.', 'Sitios web corporativos.', 'Landing pages.', 'Portales y sitios especializados.', 'Rediseño y mantenimiento web.'],
     cta: 'Conoce nuestros servicios web',
-    h1: 'Desarrollo web en Monterrey, Nuevo León',
-    title: 'Desarrollo web en Monterrey: sitios y portales | Dynamedia',
-    description: 'Desarrollo web en Monterrey: sitios corporativos, landing pages, portales y rediseño. Una presencia digital profesional que genera clientes. Cotiza.',
+    h1: 'Diseño web en Monterrey, Nuevo León',
+    title: 'Diseño web en Monterrey: sitios corporativos | Dynamedia',
+    description: 'Diseño web en Monterrey: sitios corporativos, landing pages, portales y rediseño. Una presencia digital profesional que genera clientes. Cotiza.',
     intro: [
       'Tu sitio web es la primera impresión de tu empresa en internet. Tiene que verse profesional, cargar rápido, funcionar en celular y explicar con claridad qué haces y cómo contactarte.',
       'Esta área reúne todo lo que necesitas para lograrlo: diseño y desarrollo de sitios, páginas corporativas, landing pages, portales especializados, y rediseño y mantenimiento de los que ya tienes. Trabajamos con empresas de Monterrey, Nuevo León, y de todo México.',
@@ -30,7 +30,7 @@ export const areas: Area[] = [
     beneficios: [i('Imagen profesional', 'Un sitio que presenta bien a tu empresa desde la primera visita.'), i('Pensado para convertir', 'Estructura y mensajes que invitan al contacto y a la cotización.'), i('Preparado para Google', 'Base técnica y de contenido lista para el posicionamiento.'), i('Con acompañamiento', 'Soporte y actualización después de publicar.')],
     pasos: [i('Descubrimiento', 'Entendemos tu negocio, tu público y lo que necesitas lograr.'), i('Diseño', 'Proponemos la estructura y la imagen de tu sitio.'), i('Desarrollo', 'Construimos y probamos cada sección.'), i('Lanzamiento y soporte', 'Publicamos y seguimos a tu lado.')],
     faqs: [
-      f('¿Qué incluye el área de desarrollo web?', 'Diseño y desarrollo de páginas web, sitios corporativos, landing pages, portales y sitios especializados, y rediseño y mantenimiento web.'),
+      f('¿Qué incluye el área de diseño web?', 'Diseño y desarrollo de páginas web, sitios corporativos, landing pages, portales y sitios especializados, y rediseño y mantenimiento web.'),
       f('¿Pueden rediseñar el sitio que ya tengo?', 'Sí. Revisamos tu sitio actual, conservamos lo que funciona y lo renovamos en diseño, estructura y velocidad.'),
       f('¿Atienden a empresas fuera de Monterrey?', 'Sí. Estamos en Monterrey, Nuevo León, y trabajamos con empresas de todo México.'),
     ],

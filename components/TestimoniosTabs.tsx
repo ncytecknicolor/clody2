@@ -33,7 +33,7 @@ export default function TestimoniosTabs() {
           {lista.map((t, i) => (
             <figure key={t.id} id={`test-panel-${i}`} role="tabpanel" aria-labelledby={`test-tab-${i}`} hidden={a !== i} className="panel-entra relative">
               <Quote aria-hidden size={44} className="text-naranja-claro" />
-              <blockquote className="mt-5 text-2xl leading-relaxed md:text-3xl">
+              <blockquote className="mt-5 text-xl leading-relaxed md:text-2xl">
                 {t.texto ?? <span className="flex flex-wrap items-center gap-2 text-base text-white/70"><span className="rounded bg-amber-100 px-2 py-0.5 text-xs font-semibold text-amber-800">Pendiente</span> Falta el testimonio de {t.nombre}.</span>}
               </blockquote>
               <figcaption className="mt-8 border-t border-white/15 pt-5"><span className="font-display text-lg font-bold">{t.nombre}</span><span className="text-white/70"> · {[t.cargo, t.empresa].filter(Boolean).join(' · ')}</span></figcaption>

@@ -11,20 +11,20 @@ export type Curso = {
 
 const m = (t: string, d: string, temas: string[]): Modulo => ({ t, d, temas });
 const f = (q: string, a: string): Faq => ({ q, a });
-const incluye = ['Clases presenciales en Monterrey', 'Práctica guiada paso a paso', 'Material de apoyo', 'Resolución de dudas posteriores'];
+const incluye = ['Clases en línea', 'Práctica guiada paso a paso', 'Material de apoyo', 'Resolución de dudas posteriores'];
 const costo = f('¿Cuánto cuesta y cuándo es el siguiente curso?', 'Pregúntanos por fechas, horarios y costo; te respondemos por WhatsApp o por correo.');
 
 // TEMARIOS Y DETALLES: propuesta redactada por Claude a partir de los nombres de los cursos. Ajusta a tu temario real.
 export const cursos: Curso[] = [
   {
-    slug: 'wordpress-monterrey', nombre: 'Curso de WordPress en Monterrey', icono: 'Globe', visual: 'navegador',
+    slug: 'wordpress-monterrey', nombre: 'Curso de WordPress en línea', icono: 'Globe', visual: 'navegador',
     corto: 'Aprende a crear y administrar tu propio sitio web, paso a paso y sin saber programar.',
-    h1: 'Curso de WordPress en Monterrey, Nuevo León',
-    title: 'Curso de WordPress en Monterrey, N.L. | Dynamedia',
-    description: 'Curso presencial de WordPress en Monterrey, N.L.: crea y administra tu propio sitio web paso a paso, sin saber programar. Pregunta por fechas.',
+    h1: 'Curso de WordPress en línea',
+    title: 'Curso de WordPress en línea | Dynamedia',
+    description: 'Curso en línea de WordPress de Dynamedia (Monterrey, N.L.): crea y administra tu propio sitio web paso a paso, sin saber programar. Pregunta por fechas.',
     intro: [
       'WordPress es una de las plataformas más usadas para crear sitios web, y permite que una persona sin conocimientos de programación publique, edite y mantenga su propia página.',
-      'En este curso presencial en Monterrey aprendes desde cero a montar tu sitio, personalizar su diseño, agregar funciones y mantenerlo seguro, con práctica guiada por un equipo que desarrolla sitios web desde 2010.',
+      'En este curso en línea aprendes desde cero a montar tu sitio, personalizar su diseño, agregar funciones y mantenerlo seguro, con práctica guiada por un equipo que desarrolla sitios web desde 2010.',
     ],
     aprenderas: [
       'Montar tu sitio en WordPress con dominio y hosting', 'Crear páginas, entradas y menús bien organizados', 'Personalizar el diseño con temas y constructores visuales',
@@ -42,11 +42,11 @@ export const cursos: Curso[] = [
     ],
     practica: 'Durante el curso construyes tu propio sitio web, o el de tu empresa, desde cero, y sales con una base lista para terminar y publicar.',
     paraQuien: ['Emprendedores y dueños de negocio', 'Personal de marketing o comunicación que actualiza la página de su empresa', 'Profesionistas que quieren su propio sitio', 'Quienes desean dejar de depender de terceros para cambios sencillos'],
-    requisitos: ['No necesitas saber programar', 'Manejo básico de computadora e internet', 'Computadora portátil con conexión a internet', 'Opcional: tu logotipo, textos e imágenes para practicar con tu proyecto'],
+    requisitos: ['No necesitas saber programar', 'Manejo básico de computadora e internet', 'Computadora con conexión a internet estable', 'Opcional: tu logotipo, textos e imágenes para practicar con tu proyecto'],
     incluye,
     faqs: [
       f('¿Necesito saber programar?', 'No. El curso está pensado para personas sin conocimientos técnicos; aprendes a usar WordPress paso a paso.'),
-      f('¿El curso es presencial?', 'Sí, es presencial en Monterrey, Nuevo León.'),
+      f('¿El curso es en línea?', 'Sí. Se imparte en línea, así que puedes tomarlo desde cualquier lugar. Pregúntanos por fechas y horarios.'),
       f('¿Puedo trabajar con mi propio proyecto?', 'Sí. Si llevas tu logotipo, textos e imágenes, practicas directamente con el sitio de tu negocio.'),
       costo,
     ],
@@ -55,12 +55,12 @@ export const cursos: Curso[] = [
   {
     slug: 'posicionamiento-en-google', nombre: 'Curso de posicionamiento web en Google', icono: 'Search', visual: 'buscador',
     corto: 'Aprende a mejorar la visibilidad de tu sitio en Google y a medir si funciona.',
-    h1: 'Curso de posicionamiento web en Google en Monterrey',
-    title: 'Curso de posicionamiento web en Google, Monterrey | Dynamedia',
-    description: 'Curso presencial de SEO y posicionamiento en Google en Monterrey, N.L.: mejora la visibilidad de tu sitio y mide resultados. Pregunta por fechas.',
+    h1: 'Curso de posicionamiento web en Google en línea',
+    title: 'Curso de posicionamiento web en Google en línea | Dynamedia',
+    description: 'Curso en línea de SEO y posicionamiento en Google de Dynamedia (Monterrey, N.L.): mejora la visibilidad de tu sitio y mide resultados. Pregunta por fechas.',
     intro: [
       'El posicionamiento web (SEO) ayuda a que tu sitio aparezca cuando las personas buscan lo que ofreces. No es magia ni se compra: se construye con una estrategia y con trabajo constante.',
-      'En este curso presencial en Monterrey aprendes cómo funciona Google, cómo elegir palabras clave, cómo optimizar tu sitio y cómo medir resultados, con énfasis en el SEO local para negocios de Monterrey y Nuevo León.',
+      'En este curso en línea aprendes cómo funciona Google, cómo elegir palabras clave, cómo optimizar tu sitio y cómo medir resultados, con énfasis en el SEO local para negocios de Monterrey y Nuevo León.',
     ],
     aprenderas: [
       'Entender cómo Google encuentra, indexa y ordena las páginas', 'Elegir las palabras clave que usan tus clientes', 'Optimizar títulos, textos, encabezados y estructura de tu sitio',
@@ -78,7 +78,7 @@ export const cursos: Curso[] = [
     ],
     practica: 'Haces una auditoría básica de tu propio sitio y sales con un plan de acción priorizado para empezar a mejorar tu posicionamiento.',
     paraQuien: ['Dueños de negocio que ya tienen sitio web', 'Equipos de marketing y ventas', 'Freelancers y consultores', 'Quienes administran un sitio en WordPress u otra plataforma'],
-    requisitos: ['Manejo básico de internet', 'Idealmente, un sitio web propio para practicar', 'Computadora portátil con conexión a internet', 'No necesitas conocimientos técnicos previos'],
+    requisitos: ['Manejo básico de internet', 'Idealmente, un sitio web propio para practicar', 'Computadora con conexión a internet estable', 'No necesitas conocimientos técnicos previos'],
     incluye,
     faqs: [
       f('¿El curso garantiza que mi sitio llegue a la primera posición?', 'No. Nadie puede garantizarlo, porque Google decide con muchos factores. Aprendes qué sí puedes mejorar y cómo medir el avance.'),

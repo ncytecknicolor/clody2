@@ -147,7 +147,7 @@ export default function ServicioPage({ params }: { params: { slug: string } }) {
           <section className="bg-niebla py-16">
             <div className="mx-auto max-w-6xl px-5">
               <h2 className="font-display text-3xl font-bold md:text-4xl">¿Prefieres aprender a hacerlo tú?</h2>
-              <p className="mt-3 max-w-2xl text-grafito/80">Si quieres manejar esto por tu cuenta, también ofrecemos cursos presenciales en Monterrey.</p>
+              <p className="mt-3 max-w-2xl text-grafito/80">Si quieres manejar esto por tu cuenta, también ofrecemos cursos en línea.</p>
               <div className="mt-8 grid gap-5 md:grid-cols-2">
                 {cursosSrv.map((c) => {
                   const I = iconos[c.icono];

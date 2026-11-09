@@ -22,7 +22,7 @@ export default function Testimonios() {
                 <figure className="h-full">
                   <Tarjeta className="h-full border border-white/15 bg-white/5 p-8 backdrop-blur md:p-10" luz="rgba(255,255,255,0.14)" inner="relative flex h-full flex-col">
                     <Quote aria-hidden size={56} className="text-naranja-claro transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110" />
-                    <blockquote className="mt-5 flex-1 text-xl leading-relaxed md:text-2xl">
+                    <blockquote className="mt-5 flex-1 text-lg leading-relaxed md:text-xl">
                       {t.texto ?? <span className="flex flex-wrap items-center gap-2 text-base text-white/70"><span className="rounded bg-amber-100 px-2 py-0.5 text-xs font-semibold text-amber-800">Pendiente</span> Falta el testimonio de {t.nombre}.</span>}
                     </blockquote>
                     <figcaption className="mt-8 flex items-center gap-4 border-t border-white/15 pt-6">

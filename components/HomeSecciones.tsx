@@ -41,12 +41,12 @@ export function PorQue() {
 }
 
 export function Giros() {
-  const giros = [{ icon: Store, t: 'Tiendas departamentales' }, { icon: Factory, t: 'Industriales' }, { icon: Briefcase, t: 'Servicios' }, { icon: Newspaper, t: 'Periódicos digitales' }, { icon: Globe, t: 'Sitios informativos' }];
+  const giros = [{ icon: Store, t: 'Tiendas departamentales' }, { icon: Factory, t: 'Industriales' }, { icon: Briefcase, t: 'Servicios' }, { icon: Newspaper, t: 'Periódicos digitales' }, { icon: Globe, t: 'Sitios informativos' }, { icon: GraduationCap, t: 'Educación y capacitación' }];
   return (
     <section className="mx-auto max-w-6xl px-5 py-20">
       <h2 className="font-display text-3xl font-bold md:text-4xl">Experiencia en distintos giros</h2>
-      <p className="mt-3 max-w-2xl text-grafito/80">Hemos desarrollado proyectos para empresas comerciales, industriales y de servicios, así como para medios digitales y sitios informativos.</p>
-      <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-5">
+      <p className="mt-3 max-w-2xl text-grafito/80">Hemos desarrollado proyectos para empresas comerciales, industriales y de servicios, así como para medios digitales, sitios informativos y proyectos de educación y capacitación.</p>
+      <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
         {giros.map(({ icon: Icon, t }, k) => (
           <Reveal key={t} delay={k * 90} className="h-full">
             <Tarjeta className="h-full border border-black/10 bg-white p-6 text-center">
