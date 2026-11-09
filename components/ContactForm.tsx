@@ -30,7 +30,7 @@ function Campo({ id, label, value, onChange, error, required, type = 'text', aut
   );
 }
 
-export default function ContactForm() {
+export default function ContactForm({ preseleccion = [] }: { preseleccion?: string[] }) {
   const [paso, setPaso] = useState(0);
   const [sel, setSel] = useState<string[]>([]);
   const [cuando, setCuando] = useState(cuandoOps[0]);
@@ -45,6 +45,10 @@ export default function ContactForm() {
     const s = new URLSearchParams(window.location.search).get('servicio');
     const m = servicios.find((x) => x.slug === s);
     if (m) setSel([m.nombre]);
+    else {
+      const ini = servicios.filter((x) => preseleccion.includes(x.slug)).map((x) => x.nombre);
+      if (ini.length) setSel(ini);
+    }
   }, []);
 
   const set = (k: keyof Datos) => (v: string) => { setD((p) => ({ ...p, [k]: v })); setErr((p) => ({ ...p, [k]: undefined })); };

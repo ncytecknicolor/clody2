@@ -7,7 +7,7 @@ import { EMAIL, WA } from '@/lib/site';
 const sigue = ['Recibimos tu mensaje.', 'Te contactamos para entender tu proyecto.', 'Te enviamos una propuesta con costos y tiempos.'];
 const tarjeta = 'border border-white/15 bg-white/5 p-5 backdrop-blur';
 
-export default function SeccionContacto() {
+export default function SeccionContacto({ preseleccion }: { preseleccion?: string[] }) {
   return (
     <section id="contacto" className="relative scroll-mt-8 overflow-hidden bg-azul-oscuro py-24 text-white">
       <div aria-hidden className="absolute inset-0 opacity-40" style={{ background: 'radial-gradient(55% 70% at 90% 10%, rgba(242,107,33,.55), transparent 60%), radial-gradient(45% 60% at 0% 100%, rgba(27,79,156,.9), transparent 70%)' }} />
@@ -47,7 +47,7 @@ export default function SeccionContacto() {
             ))}
           </ol>
         </Reveal>
-        <Reveal delay={150}><ContactForm /></Reveal>
+        <Reveal delay={150}><ContactForm preseleccion={preseleccion} /></Reveal>
       </div>
     </section>
   );

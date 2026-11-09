@@ -7,6 +7,8 @@ import ExploraServicios from '@/components/ExploraServicios';
 import Reveal from '@/components/Reveal';
 import { Tarjeta, Magnetico, Parallax } from '@/components/ui';
 import { servicios, porSlug } from '@/lib/servicios';
+import { areas } from '@/lib/areas';
+import { iconos } from '@/lib/iconos';
 import { SITE, WA } from '@/lib/site';
 import { metaPagina } from '@/lib/seo';
 import { migas, jsonLd } from '@/lib/schema';
@@ -45,6 +47,23 @@ export default function Servicios() {
               <Magnetico><Link href="/#contacto" className="brillo block rounded-full bg-naranja px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:bg-naranja-claro">Cotiza tu proyecto</Link></Magnetico>
               <Magnetico><a href={WA} className="flex items-center gap-2 rounded-full border border-white/40 px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:bg-white/10"><MessageCircle size={18} /> WhatsApp</a></Magnetico>
             </div>
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-6xl px-5 pt-20">
+          <h2 className="font-display text-3xl font-bold md:text-4xl">Nuestras 4 áreas de especialidad</h2>
+          <p className="mt-3 max-w-xl text-grafito/80">Cada área reúne los servicios que se complementan entre sí.</p>
+          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {areas.map((a) => { const I = iconos[a.icono]; return (
+              <Link key={a.slug} href={`/areas/${a.slug}`} className="block h-full">
+                <Tarjeta className="h-full border border-black/10 bg-white p-6" inner="relative flex h-full flex-col">
+                  <div className="flex items-center justify-between"><div className="flex h-12 w-12 items-center justify-center rounded-lg bg-azul text-white transition-colors group-hover:bg-naranja"><I size={24} /></div><span aria-hidden className="font-display text-4xl font-extrabold text-azul/10">{a.n}</span></div>
+                  <h3 className="mt-4 font-display text-lg font-bold text-azul">{a.nombre}</h3>
+                  <p className="mt-2 text-sm text-grafito/80">{a.titulo}</p>
+                  <span className="mt-auto inline-flex items-center gap-2 pt-4 text-sm font-semibold text-naranja">Ver el área <ArrowUpRight size={16} /></span>
+                </Tarjeta>
+              </Link>
+            ); })}
           </div>
         </section>
 
