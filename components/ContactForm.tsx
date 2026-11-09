@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useRef, useState, type FormEvent } from 'react';
-import { ArrowLeft, ArrowRight, Check, Send, MessageCircle, Loader2 } from 'lucide-react';
+import { Check, Send, MessageCircle, Loader2 } from 'lucide-react';
 import { servicios } from '@/lib/servicios';
 import { iconos } from '@/lib/iconos';
 import { EMAIL, WA } from '@/lib/site';
@@ -8,9 +8,8 @@ import { Magnetico } from './ui';
 
 const NO_SE = 'Aún no estoy seguro';
 const cuandoOps = ['Lo antes posible', 'Este mes', 'En 2 o 3 meses', 'Solo estoy explorando'];
-const titulos = ['Tu proyecto', 'Tus datos', 'Tu mensaje'];
 type Datos = { nombre: string; correo: string; telefono: string; empresa: string; mensaje: string };
-type Errores = Partial<Record<keyof Datos | 'sel', string>>;
+type Errores = Partial<Record<'nombre' | 'correo' | 'mensaje', string>>;
 const emailOk = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
 
 function Campo({ id, label, value, onChange, error, required, type = 'text', autoComplete, area }:
@@ -20,7 +19,7 @@ function Campo({ id, label, value, onChange, error, required, type = 'text', aut
   return (
     <div className="relative">
       {area
-        ? <textarea {...comun} rows={5} required={required} onChange={(e) => onChange(e.target.value)} />
+        ? <textarea {...comun} rows={4} required={required} onChange={(e) => onChange(e.target.value)} />
         : <input {...comun} type={type} required={required} autoComplete={autoComplete} onChange={(e) => onChange(e.target.value)} />}
       <label htmlFor={id} className="pointer-events-none absolute left-4 top-4 origin-left text-grafito/60 transition-all duration-200 peer-focus:top-2 peer-focus:scale-75 peer-focus:text-naranja peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:scale-75">
         {label}{required && ' *'}
@@ -30,10 +29,18 @@ function Campo({ id, label, value, onChange, error, required, type = 'text', aut
   );
 }
 
+// Número de sección: se vuelve palomita naranja cuando esa parte ya está lista.
+function Num({ n, listo }: { n: number; listo: boolean }) {
+  return (
+    <span aria-hidden className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white transition-colors duration-300 ${listo ? 'bg-naranja' : 'bg-azul'}`}>
+      {listo ? <Check size={15} /> : n}
+    </span>
+  );
+}
+
 export default function ContactForm({ preseleccion = [] }: { preseleccion?: string[] }) {
-  const [paso, setPaso] = useState(0);
   const [sel, setSel] = useState<string[]>([]);
-  const [cuando, setCuando] = useState(cuandoOps[0]);
+  const [cuando, setCuando] = useState('');
   const [d, setD] = useState<Datos>({ nombre: '', correo: '', telefono: '', empresa: '', mensaje: '' });
   const [err, setErr] = useState<Errores>({});
   const [estado, setEstado] = useState<'idle' | 'enviando' | 'ok' | 'error'>('idle');
@@ -52,39 +59,35 @@ export default function ContactForm({ preseleccion = [] }: { preseleccion?: stri
     }
   }, []);
 
-  const set = (k: keyof Datos) => (v: string) => { setD((p) => ({ ...p, [k]: v })); setErr((p) => ({ ...p, [k]: undefined })); };
-  const alternar = (n: string) => {
+  const set = (k: keyof Datos) => (v: string) => { setD((p) => ({ ...p, [k]: v })); if (k === 'nombre' || k === 'correo' || k === 'mensaje') setErr((p) => ({ ...p, [k]: undefined })); };
+  const alternar = (n: string) =>
     setSel((p) => (n === NO_SE ? (p.includes(n) ? [] : [n]) : p.includes(n) ? p.filter((x) => x !== n) : [...p.filter((x) => x !== NO_SE), n]));
-    setErr((p) => ({ ...p, sel: undefined }));
-  };
-  const validar = (p: number): Errores => {
-    const e: Errores = {};
-    if (p === 0 && sel.length === 0) e.sel = 'Elige al menos una opción.';
-    if (p === 1) {
-      if (d.nombre.trim().length < 2) e.nombre = 'Escribe tu nombre.';
-      if (!emailOk(d.correo.trim())) e.correo = 'Escribe un correo válido.';
-    }
-    if (p === 2 && d.mensaje.trim().length < 10) e.mensaje = 'Cuéntanos un poco más (mínimo 10 caracteres).';
-    return e;
-  };
-  const siguiente = () => { const e = validar(paso); setErr(e); if (Object.keys(e).length === 0) setPaso(paso + 1); };
+
+  const okNombre = d.nombre.trim().length >= 2;
+  const okCorreo = emailOk(d.correo.trim());
+  const okMensaje = d.mensaje.trim().length >= 10;
+  const avance = ([okNombre, okCorreo, okMensaje].filter(Boolean).length / 3) * 100;
+
   const enviar = async (ev: FormEvent) => {
     ev.preventDefault();
-    if (paso < 2) { siguiente(); return; }
-    const e = validar(2);
+    const e: Errores = {};
+    if (!okNombre) e.nombre = 'Escribe tu nombre.';
+    if (!okCorreo) e.correo = 'Escribe un correo válido.';
+    if (!okMensaje) e.mensaje = 'Cuéntanos un poco más (mínimo 10 caracteres).';
     setErr(e);
-    if (Object.keys(e).length) return;
+    const primero = (['nombre', 'correo', 'mensaje'] as const).find((k) => e[k]);
+    if (primero) { document.getElementById(`c-${primero}`)?.focus(); return; }
     setEstado('enviando');
     try {
       const r = await fetch('/api/contact', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...d, servicios: sel, cuando, web, tiempo: Date.now() - t0.current, pagina: window.location.href }),
+        body: JSON.stringify({ ...d, servicios: sel, cuando: cuando || 'No indicó', web, tiempo: Date.now() - t0.current, pagina: window.location.href }),
       });
       if (!r.ok) { const j = await r.json().catch(() => null); setCodigo(j?.codigo ?? String(r.status)); }
       setEstado(r.ok ? 'ok' : 'error');
     } catch { setCodigo('conexion'); setEstado('error'); }
   };
-  const reiniciar = () => { setPaso(0); setSel([]); setD({ nombre: '', correo: '', telefono: '', empresa: '', mensaje: '' }); setErr({}); setEstado('idle'); t0.current = Date.now(); };
+  const reiniciar = () => { setSel([]); setCuando(''); setD({ nombre: '', correo: '', telefono: '', empresa: '', mensaje: '' }); setErr({}); setCodigo(''); setEstado('idle'); t0.current = Date.now(); };
 
   if (estado === 'ok') {
     const rombos = [[-90, -70], [90, -80], [-110, 10], [110, 20], [-60, 90], [70, 95], [0, -110], [0, 110]];
@@ -106,84 +109,63 @@ export default function ContactForm({ preseleccion = [] }: { preseleccion?: stri
   }
 
   return (
-    <form onSubmit={enviar} noValidate className="relative rounded-3xl bg-white p-6 text-grafito shadow-2xl md:p-8">
-      <div aria-hidden className="absolute -left-[9999px] top-0"><label>Sitio web<input tabIndex={-1} autoComplete="off" value={web} onChange={(e) => setWeb(e.target.value)} /></label></div>
+    <form onSubmit={enviar} noValidate className="relative overflow-hidden rounded-3xl bg-white text-grafito shadow-2xl">
+      <div aria-hidden className="h-1.5 bg-niebla"><div className="h-full bg-gradient-to-r from-naranja to-azul transition-all duration-500 motion-reduce:transition-none" style={{ width: `${avance}%` }} /></div>
+      <div className="p-6 md:p-8">
+        <div aria-hidden className="absolute -left-[9999px] top-0"><label>Sitio web<input tabIndex={-1} autoComplete="off" value={web} onChange={(e) => setWeb(e.target.value)} /></label></div>
 
-      <ol aria-label="Progreso del formulario" className="flex items-center gap-2">
-        {titulos.map((t, i) => (
-          <li key={t} className="flex flex-1 items-center gap-2 last:flex-none">
-            <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-bold transition-colors duration-300 ${i < paso ? 'bg-naranja text-white' : i === paso ? 'bg-azul text-white' : 'bg-niebla text-grafito/50'}`} aria-current={i === paso ? 'step' : undefined}>
-              {i < paso ? <Check size={16} /> : i + 1}
-            </span>
-            <span className={`hidden text-sm font-semibold sm:block ${i === paso ? 'text-azul' : 'text-grafito/50'}`}>{t}</span>
-            {i < 2 && <span aria-hidden className="h-0.5 flex-1 rounded bg-grafito/10"><span className={`block h-full rounded bg-naranja transition-all duration-500 ${i < paso ? 'w-full' : 'w-0'}`} /></span>}
-          </li>
-        ))}
-      </ol>
+        <h3 className="font-display text-2xl font-bold text-azul">Cuéntanos tu proyecto</h3>
+        <p className="mt-1 text-grafito/70">Te respondemos pronto. Solo toma un minuto.</p>
 
-      <div key={paso} className="panel-entra mt-7">
-        {paso === 0 && (
-          <div>
-            <h3 className="font-display text-2xl font-bold text-azul">¿Qué necesitas?</h3>
-            <p className="mt-1 text-grafito/70">Puedes elegir más de uno.</p>
-            <div role="group" aria-label="Servicios de interés" className="mt-5 grid gap-3 sm:grid-cols-2">
-              {[...servicios.map((s) => ({ n: s.nombre, I: iconos[s.icono] })), { n: NO_SE, I: MessageCircle }].map(({ n, I }) => {
-                const on = sel.includes(n);
-                return (
-                  <button key={n} type="button" aria-pressed={on} onClick={() => alternar(n)}
-                    className={`relative flex items-center gap-3 rounded-2xl border-2 p-3 text-left text-sm font-semibold transition-all duration-200 ${on ? 'scale-[1.02] border-naranja bg-naranja/10 text-azul' : 'border-grafito/10 bg-white text-grafito/80 hover:-translate-y-0.5 hover:border-azul/40'}`}>
-                    <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg transition-colors ${on ? 'bg-naranja text-white' : 'bg-niebla text-azul'}`}><I size={18} /></span>
-                    <span className="flex-1">{n}</span>
-                    {on && <Check size={18} className="shrink-0 text-naranja" />}
-                  </button>
-                );
-              })}
-            </div>
-            {err.sel && <p role="alert" className="mt-3 text-sm text-red-600">{err.sel}</p>}
+        <fieldset className="mt-6">
+          <legend className="flex items-center gap-2 font-semibold text-azul"><Num n={1} listo={sel.length > 0} /> ¿Qué te interesa? <span className="text-sm font-normal text-grafito/60">(opcional)</span></legend>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {[...servicios.map((s) => ({ n: s.nombre, I: iconos[s.icono] })), { n: NO_SE, I: MessageCircle }].map(({ n, I }) => {
+              const on = sel.includes(n);
+              return (
+                <button key={n} type="button" aria-pressed={on} onClick={() => alternar(n)}
+                  className={`flex items-center gap-2 rounded-full border-2 px-3 py-2 text-left text-sm font-semibold transition-all duration-200 active:scale-95 ${on ? 'border-naranja bg-naranja text-white shadow-md' : 'border-grafito/15 text-grafito/80 hover:-translate-y-0.5 hover:border-azul/40'}`}>
+                  <I size={16} className="shrink-0" />{n}
+                </button>
+              );
+            })}
           </div>
+        </fieldset>
+
+        <div className="mt-7">
+          <p className="flex items-center gap-2 font-semibold text-azul"><Num n={2} listo={okNombre && okCorreo} /> Tus datos</p>
+          <div className="mt-3 grid gap-4 sm:grid-cols-2">
+            <Campo id="c-nombre" label="Nombre" value={d.nombre} onChange={set('nombre')} error={err.nombre} required autoComplete="name" />
+            <Campo id="c-correo" label="Correo electrónico" type="email" value={d.correo} onChange={set('correo')} error={err.correo} required autoComplete="email" />
+            <Campo id="c-tel" label="WhatsApp o teléfono" type="tel" value={d.telefono} onChange={set('telefono')} autoComplete="tel" />
+            <Campo id="c-empresa" label="Empresa" value={d.empresa} onChange={set('empresa')} autoComplete="organization" />
+          </div>
+        </div>
+
+        <div className="mt-7">
+          <p className="flex items-center gap-2 font-semibold text-azul"><Num n={3} listo={okMensaje} /> Tu mensaje</p>
+          <div className="mt-3"><Campo id="c-mensaje" label="¿En qué te podemos ayudar?" value={d.mensaje} onChange={set('mensaje')} error={err.mensaje} required area /></div>
+          <p className="mt-4 text-sm font-semibold text-grafito/70">¿Para cuándo lo necesitas? <span className="font-normal text-grafito/60">(opcional)</span></p>
+          <div role="radiogroup" aria-label="¿Para cuándo lo necesitas?" className="mt-2 flex flex-wrap gap-2">
+            {cuandoOps.map((o) => (
+              <button key={o} type="button" role="radio" aria-checked={cuando === o} onClick={() => setCuando(cuando === o ? '' : o)}
+                className={`rounded-full border-2 px-4 py-2 text-sm font-semibold transition-all active:scale-95 ${cuando === o ? 'border-azul bg-azul text-white' : 'border-grafito/15 text-grafito/70 hover:border-azul/40'}`}>{o}</button>
+            ))}
+          </div>
+        </div>
+
+        {estado === 'error' && (
+          <p role="alert" className="mt-6 rounded-xl bg-red-50 p-4 text-sm text-red-700">No se pudo enviar tu mensaje. Escríbenos por <a href={WA} className="font-semibold underline">WhatsApp</a> o a <a href={`mailto:${EMAIL}`} className="font-semibold underline">{EMAIL}</a>.{codigo && <span className="mt-1 block text-xs text-red-700/70">Código: {codigo}</span>}</p>
         )}
 
-        {paso === 1 && (
-          <div>
-            <h3 className="font-display text-2xl font-bold text-azul">¿Cómo te contactamos?</h3>
-            <div className="mt-5 grid gap-4 sm:grid-cols-2">
-              <Campo id="c-nombre" label="Nombre" value={d.nombre} onChange={set('nombre')} error={err.nombre} required autoComplete="name" />
-              <Campo id="c-correo" label="Correo electrónico" type="email" value={d.correo} onChange={set('correo')} error={err.correo} required autoComplete="email" />
-              <Campo id="c-tel" label="WhatsApp o teléfono" type="tel" value={d.telefono} onChange={set('telefono')} autoComplete="tel" />
-              <Campo id="c-empresa" label="Empresa" value={d.empresa} onChange={set('empresa')} autoComplete="organization" />
-            </div>
-          </div>
-        )}
-
-        {paso === 2 && (
-          <div>
-            <h3 className="font-display text-2xl font-bold text-azul">Cuéntanos más</h3>
-            <ul className="mt-3 flex flex-wrap gap-2">{sel.map((s) => <li key={s} className="rounded-full bg-niebla px-3 py-1 text-xs font-semibold text-azul">{s}</li>)}</ul>
-            <div className="mt-4"><Campo id="c-mensaje" label="¿En qué te podemos ayudar?" value={d.mensaje} onChange={set('mensaje')} error={err.mensaje} required area /></div>
-            <p className="mt-5 text-sm font-semibold text-grafito/70">¿Para cuándo lo necesitas?</p>
-            <div role="radiogroup" aria-label="¿Para cuándo lo necesitas?" className="mt-2 flex flex-wrap gap-2">
-              {cuandoOps.map((o) => (
-                <button key={o} type="button" role="radio" aria-checked={cuando === o} onClick={() => setCuando(o)}
-                  className={`rounded-full border-2 px-4 py-2 text-sm font-semibold transition-all ${cuando === o ? 'border-naranja bg-naranja text-white' : 'border-grafito/15 text-grafito/70 hover:border-azul/40'}`}>{o}</button>
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
-
-      {estado === 'error' && (
-        <p role="alert" className="mt-5 rounded-xl bg-red-50 p-4 text-sm text-red-700">No se pudo enviar tu mensaje. Escríbenos por <a href={WA} className="font-semibold underline">WhatsApp</a> o a <a href={`mailto:${EMAIL}`} className="font-semibold underline">{EMAIL}</a>.{codigo && <span className="mt-1 block text-xs text-red-700/70">Código: {codigo}</span>}</p>
-      )}
-
-      <div className="mt-8 flex flex-wrap items-center justify-between gap-3">
-        {paso > 0
-          ? <button type="button" onClick={() => setPaso(paso - 1)} className="flex items-center gap-2 rounded-full border border-grafito/20 px-4 py-3 text-sm font-semibold text-azul transition-colors hover:border-naranja hover:text-naranja sm:px-5"><ArrowLeft size={18} /> Atrás</button>
-          : <span />}
-        <Magnetico>
-          <button type="submit" disabled={estado === 'enviando'} className="brillo flex items-center gap-2 rounded-full bg-naranja px-5 py-3 text-xs font-semibold uppercase tracking-wider text-white hover:bg-naranja-claro disabled:opacity-70 sm:px-7 sm:text-sm sm:tracking-widest">
-            {paso < 2 ? <>Continuar <ArrowRight size={18} /></> : estado === 'enviando' ? <><Loader2 size={18} className="animate-spin" /> Enviando</> : <><Send size={18} /> Enviar mensaje</>}
-          </button>
-        </Magnetico>
+        <div className="mt-8 flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-xs text-grafito/60">* Campos obligatorios</p>
+          <Magnetico className="w-full sm:w-auto">
+            <button type="submit" disabled={estado === 'enviando'} className="brillo flex w-full items-center justify-center gap-2 rounded-full bg-naranja px-8 py-4 text-sm font-semibold uppercase tracking-widest text-white hover:bg-naranja-claro disabled:opacity-70">
+              {estado === 'enviando' ? <><Loader2 size={18} className="animate-spin" /> Enviando</> : <><Send size={18} /> Enviar mensaje</>}
+            </button>
+          </Magnetico>
+        </div>
       </div>
     </form>
   );
