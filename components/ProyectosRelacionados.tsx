@@ -6,8 +6,8 @@ import { Tarjeta } from './ui';
 import Reveal from './Reveal';
 
 // Enlaza cada servicio con proyectos reales (enlazado interno + imágenes con texto alternativo descriptivo).
-export default function ProyectosRelacionados({ categoria, servicio }: { categoria?: string; servicio: string }) {
-  const lista = categoria ? proyectos.filter((p) => p.categoria === categoria).slice(0, 3) : [];
+export default function ProyectosRelacionados({ slugs, servicio }: { slugs: string[]; servicio: string }) {
+  const lista = proyectos.filter((p) => p.servicios?.some((s) => s.slug && slugs.includes(s.slug))).slice(0, 3);
   return (
     <section className="mx-auto max-w-6xl px-5 py-20">
       <h2 className="font-display text-3xl font-bold md:text-4xl">Proyectos que hemos desarrollado</h2>

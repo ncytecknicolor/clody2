@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { X, Pause, Play, ArrowUpRight } from 'lucide-react';
+import { X, Pause, Play, ArrowUpRight, Check } from 'lucide-react';
 import { proyectos, MOSTRAR_PENDIENTES, type Proyecto } from './proyectos';
 
 // r = proporción ancho/alto de la tarjeta (2 = todas iguales). Si algún día quieres variar, cambia el número de cada una.
@@ -63,7 +63,6 @@ function Bloque({ titulo, ok, children }: { titulo: string; ok: boolean; childre
 
 function Ficha({ p, cerrar }: { p: Proyecto; cerrar: () => void }) {
   const meta = [p.sector, p.solucion ?? p.categoria, p.anio].filter(Boolean).join(' · ');
-  const srv = p.categoria === 'Ecommerce' ? { h: '/servicios/tiendas-virtuales', t: 'Conoce nuestro servicio de tiendas virtuales' } : p.categoria === 'Web corporativa' ? { h: '/servicios/diseno-web', t: 'Conoce nuestro servicio de diseño web' } : null;
   return (
     <article>
       <div className="sticky top-0 z-10 h-0">
@@ -77,13 +76,26 @@ function Ficha({ p, cerrar }: { p: Proyecto; cerrar: () => void }) {
           {meta || (MOSTRAR_PENDIENTES && <><Pendiente /> Sector y tipo de solución</>)}
         </p>
         <Bloque titulo="Servicios involucrados" ok={!!p.servicios?.length}>
-          <ul className="flex flex-wrap gap-2">{p.servicios?.map((s) => <li key={s} className="rounded-full bg-niebla px-3 py-1 text-sm font-semibold">{s}</li>)}</ul>
+          <ul className="flex flex-wrap gap-2">
+            {p.servicios?.map((s) => (
+              <li key={s.t}>
+                {s.slug
+                  ? <Link href={`/servicios/${s.slug}`} onClick={cerrar} className="block rounded-full bg-niebla px-3 py-1 text-sm font-semibold text-azul transition-colors hover:bg-naranja hover:text-white">{s.t}</Link>
+                  : <span className="block rounded-full bg-niebla px-3 py-1 text-sm font-semibold">{s.t}</span>}
+              </li>
+            ))}
+          </ul>
         </Bloque>
         <div className="grid gap-x-10 md:grid-cols-2">
           <Bloque titulo="El reto" ok={!!p.reto}><p>{p.reto}</p></Bloque>
-          <Bloque titulo="Qué desarrollamos" ok={!!p.desarrollo}><p>{p.desarrollo}</p></Bloque>
+          <Bloque titulo="Qué desarrollamos" ok={!!p.desarrollo || !!p.actividades?.length}>
+            {p.desarrollo && <p>{p.desarrollo}</p>}
+            {p.actividades && <ul className="mt-3 space-y-2">{p.actividades.map((a) => <li key={a} className="flex gap-2 text-sm"><Check size={16} className="mt-0.5 shrink-0 text-naranja" />{a}</li>)}</ul>}
+          </Bloque>
         </div>
-        <Bloque titulo="Resultado" ok={!!p.resultado}><p>{p.resultado}</p></Bloque>
+        <Bloque titulo="Resultado" ok={!!p.resultado?.length}>
+          <ul className="space-y-2">{p.resultado?.map((r) => <li key={r} className="flex gap-2"><Check size={18} className="mt-0.5 shrink-0 text-naranja" />{r}</li>)}</ul>
+        </Bloque>
         {(p.galeria?.length || MOSTRAR_PENDIENTES) && (
           <section className="mt-8">
             <h3 className="font-display text-lg font-bold text-azul">Galería</h3>
@@ -105,7 +117,6 @@ function Ficha({ p, cerrar }: { p: Proyecto; cerrar: () => void }) {
               Visitar sitio web <ArrowUpRight size={18} />
             </a>
           ) : MOSTRAR_PENDIENTES && <span className="flex items-center gap-2 text-sm"><Pendiente /> Enlace al sitio</span>}
-          {srv && <Link href={srv.h} onClick={cerrar} className="inline-flex items-center gap-2 font-semibold text-azul hover:text-naranja">{srv.t} <ArrowUpRight size={18} /></Link>}
           <a href="#contacto" onClick={cerrar} className="rounded-full bg-naranja px-6 py-3 font-semibold text-white hover:bg-naranja-claro">Quiero un proyecto así</a>
         </div>
       </div>

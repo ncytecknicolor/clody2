@@ -5,7 +5,7 @@ export type Area = {
   slug: string; n: string; nombre: string; icono: IconoKey;
   titulo: string; texto: string; lista: string[]; cta: string;
   h1: string; title: string; description: string; intro: string[];
-  servicios: string[]; relacionados: string[]; beneficios: Par[]; pasos: Par[]; faqs: Faq[]; categoriaProyectos?: string;
+  servicios: string[]; relacionados: string[]; beneficios: Par[]; pasos: Par[]; faqs: Faq[];
 };
 
 const i = (t: string, d: string): Par => ({ t, d });
@@ -26,7 +26,7 @@ export const areas: Area[] = [
       'Tu sitio web es la primera impresión de tu empresa en internet. Tiene que verse profesional, cargar rápido, funcionar en celular y explicar con claridad qué haces y cómo contactarte.',
       'Esta área reúne todo lo que necesitas para lograrlo: diseño y desarrollo de sitios, páginas corporativas, landing pages, portales especializados, y rediseño y mantenimiento de los que ya tienes. Trabajamos con empresas de Monterrey, Nuevo León, y de todo México.',
     ],
-    servicios: ['diseno-web', 'diseno-grafico'], relacionados: ['posicionamiento-en-google', 'tiendas-virtuales', 'capacitacion'], categoriaProyectos: 'Web corporativa',
+    servicios: ['diseno-web', 'diseno-grafico'], relacionados: ['posicionamiento-en-google', 'tiendas-virtuales', 'capacitacion'],
     beneficios: [i('Imagen profesional', 'Un sitio que presenta bien a tu empresa desde la primera visita.'), i('Pensado para convertir', 'Estructura y mensajes que invitan al contacto y a la cotización.'), i('Preparado para Google', 'Base técnica y de contenido lista para el posicionamiento.'), i('Con acompañamiento', 'Soporte y actualización después de publicar.')],
     pasos: [i('Descubrimiento', 'Entendemos tu negocio, tu público y lo que necesitas lograr.'), i('Diseño', 'Proponemos la estructura y la imagen de tu sitio.'), i('Desarrollo', 'Construimos y probamos cada sección.'), i('Lanzamiento y soporte', 'Publicamos y seguimos a tu lado.')],
     faqs: [
@@ -70,7 +70,7 @@ export const areas: Area[] = [
       'Vender por internet exige más que subir productos: necesitas un catálogo claro, un proceso de compra sencillo, formas de pago confiables y control de pedidos y envíos.',
       'Creamos tiendas en línea que facilitan la compra, la administración y el crecimiento de tu negocio, y las conectamos con estrategias para que más clientes las encuentren. Trabajamos con marcas y comercios de Monterrey y de todo México.',
     ],
-    servicios: ['tiendas-virtuales'], relacionados: ['campanas-pago-por-clic', 'posicionamiento-en-google', 'diseno-web'], categoriaProyectos: 'Ecommerce',
+    servicios: ['tiendas-virtuales'], relacionados: ['campanas-pago-por-clic', 'posicionamiento-en-google', 'diseno-web'],
     beneficios: [i('Vendes 24/7', 'Tu tienda recibe pedidos a cualquier hora.'), i('Pagos integrados', 'Tus clientes pagan sin salir de la tienda.'), i('Envíos y logística', 'Opciones de entrega conectadas a tu operación.'), i('Administración sencilla', 'Un solo panel para productos, pedidos e inventario.')],
     pasos: [i('Plan de catálogo', 'Ordenamos productos, categorías y precios.'), i('Diseño de la tienda', 'Creamos una experiencia de compra clara.'), i('Pagos y envíos', 'Conectamos los métodos de cobro y entrega.'), i('Lanzamiento y mejora', 'Publicamos, medimos y optimizamos.')],
     faqs: [

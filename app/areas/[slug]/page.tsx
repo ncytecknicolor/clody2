@@ -146,7 +146,7 @@ export default function AreaPage({ params }: { params: { slug: string } }) {
           </div>
         </section>
 
-        <ProyectosRelacionados categoria={a.categoriaProyectos} servicio={a.nombre} />
+        <ProyectosRelacionados slugs={a.servicios} servicio={a.nombre} />
 
         <section className="mx-auto max-w-4xl px-5 pb-20">
           <h2 className="font-display text-3xl font-bold md:text-4xl">Preguntas frecuentes</h2>

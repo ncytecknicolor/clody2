@@ -324,4 +324,3 @@ export const cursosDeServicio: Record<string, string[]> = {
   'diseno-web': ['wordpress-monterrey'],
   capacitacion: ['wordpress-monterrey', 'posicionamiento-en-google'],
 };
-export const categoriaProyectos: Record<string, string> = { 'diseno-web': 'Web corporativa', 'tiendas-virtuales': 'Ecommerce' };

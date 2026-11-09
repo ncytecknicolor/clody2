@@ -8,7 +8,7 @@ import Faq from '@/components/Faq';
 import IncluyeTabs from '@/components/IncluyeTabs';
 import Reveal from '@/components/Reveal';
 import { Tarjeta, Magnetico, Parallax } from '@/components/ui';
-import { servicios, porSlug, cursosDeServicio, categoriaProyectos } from '@/lib/servicios';
+import { servicios, porSlug, cursosDeServicio } from '@/lib/servicios';
 import { cursoPorSlug } from '@/lib/cursos';
 import { metaPagina } from '@/lib/seo';
 import { NEGOCIO_ID } from '@/lib/schema';
@@ -141,7 +141,7 @@ export default function ServicioPage({ params }: { params: { slug: string } }) {
           </div>
         </section>
 
-        <ProyectosRelacionados categoria={categoriaProyectos[s.slug]} servicio={s.nombre} />
+        <ProyectosRelacionados slugs={[s.slug]} servicio={s.nombre} />
 
         {cursosSrv.length > 0 && (
           <section className="bg-niebla py-16">
