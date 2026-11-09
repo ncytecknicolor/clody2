@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState, type PointerEvent } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { slides } from './heroSlides';
 import { Magnetico } from './ui';
@@ -38,6 +39,7 @@ export default function Hero() {
             className={`absolute inset-0 transition-opacity duration-700 motion-reduce:transition-none ${activa ? 'opacity-100' : 'pointer-events-none opacity-0'}`}>
             <div className="absolute inset-0" style={{ background: s.fondo }} />
             {s.imagen && <Image src={s.imagen} alt="" fill priority={k === 0} sizes="100vw" className="object-cover" />}
+            {s.imagen2 && <Image src={s.imagen2} alt="" fill sizes="100vw" className="object-cover" style={{ clipPath: 'polygon(56% 0, 100% 0, 100% 100%, 38% 100%)' }} />}
             {s.video && activa && !fallo[s.id] && (
               <video src={s.video} poster={s.imagen} autoPlay muted playsInline preload="metadata"
                 onError={() => setFallo((f) => ({ ...f, [s.id]: true }))}
@@ -47,19 +49,23 @@ export default function Hero() {
             {s.velo && <div className="absolute inset-0" style={{ background: s.velo }} />}
             <div className="relative flex h-full flex-col items-center justify-center px-6 pt-24 text-center">
               {s.eyebrow && <p className="mb-5 text-xs font-semibold uppercase tracking-[0.25em] text-white/90 md:text-sm">{s.eyebrow}</p>}
-              <H className="font-display text-[clamp(2.25rem,8vw,6.5rem)] font-extrabold uppercase leading-[0.95] tracking-tight">
+              <H className={`font-display font-extrabold uppercase tracking-tight ${s.tam === 'medio' ? 'text-[clamp(2rem,5.2vw,4.5rem)] leading-[1.02]' : 'text-[clamp(2.25rem,8vw,6.5rem)] leading-[0.95]'}`}>
                 {s.titulo.map((l) => <span key={l} className="block">{l}</span>)}
               </H>
               {Array.isArray(s.texto)
                 ? <div className="mt-8 max-w-3xl space-y-3 text-base md:text-lg">{s.texto.map((p) => <p key={p}>{p}</p>)}</div>
                 : <p className="mt-8 max-w-2xl text-lg md:text-xl">{s.texto}</p>}
               <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
-                {(s.botones ?? [{ t: 'Contacto', h: '#contacto' }]).map((b, j) => (
-                  <Magnetico key={b.t}>
-                    <a href={b.h} tabIndex={activa ? 0 : -1}
-                      className={`brillo block rounded-full px-9 py-4 text-sm font-semibold uppercase tracking-widest ${j === 0 ? 'bg-naranja hover:bg-naranja-claro' : 'border-2 border-white/70 hover:bg-white/15'}`}>{b.t}</a>
-                  </Magnetico>
-                ))}
+                {(s.botones ?? [{ t: 'Contacto', h: '#contacto' }]).map((b, j) => {
+                  const cls = `brillo block rounded-full px-9 py-4 text-sm font-semibold uppercase tracking-widest ${j === 0 ? 'bg-naranja hover:bg-naranja-claro' : 'border-2 border-white/70 hover:bg-white/15'}`;
+                  return (
+                    <Magnetico key={b.t}>
+                      {b.h.startsWith('/')
+                        ? <Link href={b.h} tabIndex={activa ? 0 : -1} className={cls}>{b.t}</Link>
+                        : <a href={b.h} tabIndex={activa ? 0 : -1} className={cls}>{b.t}</a>}
+                    </Magnetico>
+                  );
+                })}
               </div>
             </div>
           </div>
