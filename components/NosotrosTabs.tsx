@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useRef, useState, type KeyboardEvent, type PointerEvent, type ReactNode } from 'react';
 import Link from 'next/link';
-import { History, Target, Gem, Building2, Lightbulb, BadgeCheck, Eye, Headset, Clock, Store, Factory, Briefcase, Newspaper, Globe, MessagesSquare, LifeBuoy, GraduationCap, ArrowUpRight, Flag } from 'lucide-react';
+import { History, Target, Gem, Building2, Lightbulb, BadgeCheck, Eye, Headset, Clock, Store, Factory, Briefcase, Newspaper, Globe, MessagesSquare, LifeBuoy, GraduationCap, ArrowUpRight, Flag, LayoutGrid } from 'lucide-react';
 import Reveal from './Reveal';
 
 const tabs = [
@@ -19,6 +19,7 @@ const distintivos = [
   { icon: MessagesSquare, t: 'Atención cercana y comunicación directa', d: 'Creemos en hablar de frente con cada cliente para entender qué necesita y ofrecerle soluciones funcionales.' },
   { icon: LifeBuoy, t: 'Acompañamiento más allá del lanzamiento', d: 'Seguimos brindando soporte para el manejo y la actualización de tu sitio o sistema, y evolucionamos contigo.' },
   { icon: GraduationCap, t: 'Capacitación para aprovechar la tecnología', d: 'Capacitamos a equipos y a particulares para que administren su propio sitio y aprovechen mejor sus herramientas digitales.' },
+  { icon: LayoutGrid, t: 'Una visión integral de tu negocio digital', d: 'Integramos diseño web, software, ecommerce y estrategias digitales para ofrecer soluciones que trabajan en conjunto.' },
 ];
 const valores = [
   { icon: Lightbulb, t: 'Creatividad', d: 'Buscamos ideas propias para que cada proyecto se vea y funcione a la medida de su negocio.' },
@@ -86,7 +87,12 @@ export default function NosotrosTabs() {
           <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr]">
             <div>
               <h2 className="font-display text-3xl font-bold md:text-4xl">Acerca de Dynamedia</h2>
-              <p className="mt-5 text-lg text-grafito/85">Iniciamos en 2010 colaborando con proyectos de desarrollo de sitios web. Después comenzamos a impartir talleres y, al día de hoy, contamos con una amplia cartera de clientes a quienes hemos desarrollado sus sitios y a quienes seguimos brindando soporte para el manejo y la actualización de los mismos.</p>
+              <div className="mt-5 space-y-4 text-lg text-grafito/85">
+                <p>Dynamedia nació en 2010 con el objetivo de acercar la tecnología a las empresas mediante soluciones digitales funcionales y adaptadas a sus necesidades.</p>
+                <p>Comenzamos desarrollando sitios web y compartiendo nuestros conocimientos a través de talleres y capacitación. Con el tiempo, nuestra experiencia evolucionó hacia nuevas áreas como el ecommerce, el desarrollo de software a la medida, la automatización y las estrategias de crecimiento digital.</p>
+                <p>Hoy trabajamos con empresas de distintos sectores, creando soluciones que les permiten fortalecer su presencia en internet, optimizar sus procesos y aprovechar mejor las herramientas tecnológicas.</p>
+                <p>Creemos que un buen proyecto no termina cuando se publica o se entrega: también implica acompañar, orientar y ayudar a nuestros clientes a sacar el máximo provecho de su inversión tecnológica.</p>
+              </div>
             </div>
             <div className="grid gap-4">
               {distintivos.map(({ icon, t, d }) => (
@@ -115,14 +121,12 @@ export default function NosotrosTabs() {
             <div className="relative overflow-hidden rounded-3xl bg-azul-oscuro p-8 text-white md:p-10">
               <Target aria-hidden className="absolute -bottom-8 -right-8 h-48 w-48 text-white/10" />
               <p className="relative text-sm font-semibold uppercase tracking-widest text-naranja-claro">Misión</p>
-              <p className="relative mt-4 font-display text-2xl font-bold leading-snug md:text-3xl">Ser facilitadores de desarrollos web a la medida de las necesidades de nuestros clientes.</p>
-              <p className="relative mt-4 text-white/80">Lo hacemos con la creatividad, funcionalidad y calidad que ponemos en cada proyecto que nos confían.</p>
+              <p className="relative mt-4 font-display text-xl font-bold leading-snug md:text-2xl">Ayudar a las empresas a aprovechar la tecnología mediante soluciones digitales funcionales, creativas y adaptadas a sus necesidades, que fortalezcan sus negocios y faciliten su crecimiento.</p>
             </div>
             <div className="relative overflow-hidden rounded-3xl border border-black/10 bg-white p-8 shadow-sm md:p-10">
               <Eye aria-hidden className="absolute -bottom-8 -right-8 h-48 w-48 text-azul/10" />
               <p className="relative text-sm font-semibold uppercase tracking-widest text-naranja">Visión</p>
-              <p className="relative mt-4 font-display text-2xl font-bold leading-snug text-azul md:text-3xl">Ser un referente en desarrollo de software, sitios web y marketing digital en el noreste del país y a nivel nacional.</p>
-              <p className="relative mt-4 text-grafito/80">Queremos que cada empresa que trabaja con nosotros tenga una presencia digital sólida y herramientas que le ayuden a crecer.</p>
+              <p className="relative mt-4 font-display text-xl font-bold leading-snug text-azul md:text-2xl">Ser un aliado tecnológico de confianza para las empresas, reconocido por desarrollar soluciones digitales de calidad, aportar valor a sus operaciones y construir relaciones duraderas con nuestros clientes.</p>
             </div>
           </div>
         </div>

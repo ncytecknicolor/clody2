@@ -9,7 +9,7 @@ export function PorQue() {
     { icon: MessagesSquare, t: 'Atención cercana y comunicación directa', d: 'Escuchamos tus necesidades de frente y mantenemos una comunicación directa durante todo el proyecto, para ofrecerte soluciones funcionales.' },
     { icon: LifeBuoy, t: 'Acompañamiento más allá del lanzamiento', d: 'Publicar es solo el comienzo: seguimos contigo con soporte, actualización y mejoras para que tu sitio o sistema siga funcionando y evolucionando.' },
     { icon: GraduationCap, t: 'Capacitación para aprovechar la tecnología', d: 'Cursos y talleres para que tu equipo domine sus herramientas digitales y las aproveche mejor, con menos dependencia de terceros.' },
-    { icon: LayoutGrid, t: 'Una visión integral de tu negocio digital', d: 'Diseño web, ecommerce, software y marketing digital con un mismo equipo, para que cada solución se conecte con los objetivos de tu negocio.' },
+    { icon: LayoutGrid, t: 'Una visión integral de tu negocio digital', d: 'Integramos diseño web, software, ecommerce y estrategias digitales para ofrecer soluciones que trabajan en conjunto.' },
   ];
   return (
     <section className="bg-niebla py-20">
