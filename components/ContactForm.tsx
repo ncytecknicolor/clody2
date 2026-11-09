@@ -38,6 +38,7 @@ export default function ContactForm({ preseleccion = [] }: { preseleccion?: stri
   const [err, setErr] = useState<Errores>({});
   const [estado, setEstado] = useState<'idle' | 'enviando' | 'ok' | 'error'>('idle');
   const [web, setWeb] = useState('');
+  const [codigo, setCodigo] = useState('');
   const t0 = useRef(0);
 
   useEffect(() => {
@@ -79,8 +80,9 @@ export default function ContactForm({ preseleccion = [] }: { preseleccion?: stri
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...d, servicios: sel, cuando, web, tiempo: Date.now() - t0.current, pagina: window.location.href }),
       });
+      if (!r.ok) { const j = await r.json().catch(() => null); setCodigo(j?.codigo ?? String(r.status)); }
       setEstado(r.ok ? 'ok' : 'error');
-    } catch { setEstado('error'); }
+    } catch { setCodigo('conexion'); setEstado('error'); }
   };
   const reiniciar = () => { setPaso(0); setSel([]); setD({ nombre: '', correo: '', telefono: '', empresa: '', mensaje: '' }); setErr({}); setEstado('idle'); t0.current = Date.now(); };
 
@@ -170,7 +172,7 @@ export default function ContactForm({ preseleccion = [] }: { preseleccion?: stri
       </div>
 
       {estado === 'error' && (
-        <p role="alert" className="mt-5 rounded-xl bg-red-50 p-4 text-sm text-red-700">No se pudo enviar tu mensaje. Escríbenos por <a href={WA} className="font-semibold underline">WhatsApp</a> o a <a href={`mailto:${EMAIL}`} className="font-semibold underline">{EMAIL}</a>.</p>
+        <p role="alert" className="mt-5 rounded-xl bg-red-50 p-4 text-sm text-red-700">No se pudo enviar tu mensaje. Escríbenos por <a href={WA} className="font-semibold underline">WhatsApp</a> o a <a href={`mailto:${EMAIL}`} className="font-semibold underline">{EMAIL}</a>.{codigo && <span className="mt-1 block text-xs text-red-700/70">Código: {codigo}</span>}</p>
       )}
 
       <div className="mt-8 flex flex-wrap items-center justify-between gap-3">
