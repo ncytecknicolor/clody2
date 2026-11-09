@@ -20,7 +20,7 @@ const cifras = [
 ];
 const faqs = [
   { q: '¿Dónde está Dynamedia y a quién atiende?', a: 'Estamos en Monterrey, Nuevo León, y trabajamos con empresas de Monterrey y de todo México.' },
-  { q: '¿Qué servicios ofrece Dynamedia?', a: 'Diseño web, tiendas virtuales, software a la medida, posicionamiento en Google, campañas de pago por clic, redes sociales, contenido con IA, diseño gráfico y capacitación.' },
+  { q: '¿Qué servicios ofrece Dynamedia?', a: 'Diseño web, ecommerce (tiendas en línea), software a la medida, posicionamiento en Google, campañas de pago por clic, redes sociales, contenido con IA, diseño gráfico y capacitación.' },
   { q: '¿Dan soporte después de entregar el proyecto?', a: 'Sí. Seguimos brindando soporte para el manejo y la actualización de los sitios que desarrollamos, y ofrecemos pólizas de soporte.' },
   { q: '¿Imparten cursos?', a: 'Sí. Ofrecemos cursos presenciales, como el de WordPress y el de posicionamiento web en Google, y talleres para equipos.' },
   { q: '¿Cuánto cuesta un proyecto y cuánto tarda?', a: 'Depende del alcance de cada proyecto. Cuéntanos qué necesitas y te enviamos una cotización con costos y tiempos.' },

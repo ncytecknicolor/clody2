@@ -6,22 +6,22 @@ import Reveal from './Reveal';
 
 export function PorQue() {
   const chicas = [
-    { icon: MessagesSquare, t: 'Comunicación directa', d: 'Creemos en hablar de frente con cada cliente para dar soluciones funcionales a sus necesidades.' },
-    { icon: LifeBuoy, t: 'Soporte después de entregar', d: 'Seguimos brindando soporte para el manejo y la actualización de tu sitio.' },
-    { icon: GraduationCap, t: 'Talleres y cursos', d: 'Capacitamos a equipos y particulares para que administren su propio sitio.' },
-    { icon: LayoutGrid, t: 'Todo en un solo lugar', d: 'Diseño web, software, marketing digital y capacitación con un mismo equipo.' },
+    { icon: MessagesSquare, t: 'Atención cercana y comunicación directa', d: 'Escuchamos tus necesidades de frente y mantenemos una comunicación directa durante todo el proyecto, para ofrecerte soluciones funcionales.' },
+    { icon: LifeBuoy, t: 'Acompañamiento más allá del lanzamiento', d: 'Publicar es solo el comienzo: seguimos contigo con soporte, actualización y mejoras para que tu sitio o sistema siga funcionando y evolucionando.' },
+    { icon: GraduationCap, t: 'Capacitación para aprovechar la tecnología', d: 'Cursos y talleres para que tu equipo domine sus herramientas digitales y las aproveche mejor, con menos dependencia de terceros.' },
+    { icon: LayoutGrid, t: 'Una visión integral de tu negocio digital', d: 'Diseño web, ecommerce, software y marketing digital con un mismo equipo, para que cada solución se conecte con los objetivos de tu negocio.' },
   ];
   return (
     <section className="bg-niebla py-20">
       <div className="mx-auto max-w-6xl px-5">
         <h2 className="font-display text-3xl font-bold md:text-4xl">Por qué elegir Dynamedia</h2>
-        <p className="mt-3 max-w-xl text-grafito/80">Más de una década acompañando a empresas de Monterrey y de todo México.</p>
+        <p className="mt-3 max-w-xl text-grafito/80">Un socio tecnológico para tu empresa, no solo un proveedor que entrega páginas web.</p>
         <div className="mt-10 grid gap-5 md:grid-cols-4">
           <Reveal className="md:col-span-2 md:row-span-2">
             <Tarjeta className="h-full border-0 bg-azul-oscuro p-8 text-white md:p-10" inner="relative flex h-full flex-col" luz="rgba(255,255,255,0.12)">
               <p className="font-display text-[6rem] font-extrabold leading-none text-naranja-claro md:text-[8rem]"><Contador hasta={15} prefijo="+" /></p>
-              <p className="mt-2 font-display text-2xl font-bold">años creando soluciones digitales</p>
-              <p className="mt-4 max-w-md text-white/80">Desde 2010 ayudamos a empresas a tener presencia digital profesional, tecnología hecha a su medida y más clientes.</p>
+              <p className="mt-2 font-display text-2xl font-bold">años como socio tecnológico de empresas</p>
+              <p className="mt-4 max-w-md text-white/80">Desde 2010 acompañamos a empresas en su evolución digital: entendemos tu negocio, proponemos la tecnología adecuada y seguimos a tu lado conforme creces.</p>
               <Link href="/nosotros" className="mt-auto inline-flex items-center gap-2 pt-8 font-semibold text-naranja-claro hover:text-white">Conoce nuestra historia <ArrowUpRight size={18} /></Link>
             </Tarjeta>
           </Reveal>

@@ -12,7 +12,6 @@ export default function SeccionContacto({ preseleccion }: { preseleccion?: strin
     <section id="contacto" className="relative scroll-mt-8 overflow-hidden bg-azul-oscuro py-24 text-white">
       <div aria-hidden className="absolute inset-0 opacity-40" style={{ background: 'radial-gradient(55% 70% at 90% 10%, rgba(242,107,33,.55), transparent 60%), radial-gradient(45% 60% at 0% 100%, rgba(27,79,156,.9), transparent 70%)' }} />
       <div aria-hidden className="absolute -right-24 top-24 hidden md:block"><div className="flota h-64 w-64 opacity-30" style={{ background: 'linear-gradient(135deg,#F26B21 50%,#1B4F9C 50%)' }} /></div>
-      <span aria-hidden className="pointer-events-none absolute -bottom-10 left-0 select-none font-display text-[10rem] font-extrabold leading-none md:text-[18rem]" style={{ WebkitTextStroke: '2px rgba(255,255,255,0.08)', color: 'transparent' }}>HOLA</span>
       <div className="relative mx-auto grid max-w-6xl items-start gap-12 px-5 lg:grid-cols-[0.9fr_1.1fr]">
         <Reveal>
           <p className="text-sm font-semibold uppercase tracking-widest text-naranja-claro">Contacto</p>

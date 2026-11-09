@@ -50,7 +50,7 @@ export default function Hero() {
             <div className="relative flex h-full flex-col items-center justify-center px-6 pt-24 text-center">
               {s.eyebrow && <p className="mb-5 text-xs font-semibold uppercase tracking-[0.25em] text-white/90 md:text-sm">{s.eyebrow}</p>}
               <H className={`font-display font-extrabold uppercase tracking-tight ${s.tam === 'medio' ? 'text-[clamp(2rem,5.2vw,4.5rem)] leading-[1.02]' : 'text-[clamp(2.25rem,8vw,6.5rem)] leading-[0.95]'}`}>
-                {s.titulo.map((l) => <span key={l} className="block">{l}</span>)}
+                {s.titulo.map((l) => <span key={l} className="block">{l}{' '}</span>)}
               </H>
               {Array.isArray(s.texto)
                 ? <div className="mt-8 max-w-3xl space-y-3 text-base md:text-lg">{s.texto.map((p) => <p key={p}>{p}</p>)}</div>

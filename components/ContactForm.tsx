@@ -173,12 +173,12 @@ export default function ContactForm({ preseleccion = [] }: { preseleccion?: stri
         <p role="alert" className="mt-5 rounded-xl bg-red-50 p-4 text-sm text-red-700">No se pudo enviar tu mensaje. Escríbenos por <a href={WA} className="font-semibold underline">WhatsApp</a> o a <a href={`mailto:${EMAIL}`} className="font-semibold underline">{EMAIL}</a>.</p>
       )}
 
-      <div className="mt-8 flex items-center justify-between gap-3">
+      <div className="mt-8 flex flex-wrap items-center justify-between gap-3">
         {paso > 0
-          ? <button type="button" onClick={() => setPaso(paso - 1)} className="flex items-center gap-2 rounded-full border border-grafito/20 px-5 py-3 text-sm font-semibold text-azul transition-colors hover:border-naranja hover:text-naranja"><ArrowLeft size={18} /> Atrás</button>
+          ? <button type="button" onClick={() => setPaso(paso - 1)} className="flex items-center gap-2 rounded-full border border-grafito/20 px-4 py-3 text-sm font-semibold text-azul transition-colors hover:border-naranja hover:text-naranja sm:px-5"><ArrowLeft size={18} /> Atrás</button>
           : <span />}
         <Magnetico>
-          <button type="submit" disabled={estado === 'enviando'} className="brillo flex items-center gap-2 rounded-full bg-naranja px-7 py-3 text-sm font-semibold uppercase tracking-widest text-white hover:bg-naranja-claro disabled:opacity-70">
+          <button type="submit" disabled={estado === 'enviando'} className="brillo flex items-center gap-2 rounded-full bg-naranja px-5 py-3 text-xs font-semibold uppercase tracking-wider text-white hover:bg-naranja-claro disabled:opacity-70 sm:px-7 sm:text-sm sm:tracking-widest">
             {paso < 2 ? <>Continuar <ArrowRight size={18} /></> : estado === 'enviando' ? <><Loader2 size={18} className="animate-spin" /> Enviando</> : <><Send size={18} /> Enviar mensaje</>}
           </button>
         </Magnetico>

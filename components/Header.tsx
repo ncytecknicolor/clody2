@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Facebook, MessageCircle, Menu, X, ChevronDown } from 'lucide-react';
@@ -15,16 +15,25 @@ const links: Item[] = [
   { t: 'Asesoría y soporte', h: '/#soporte' },
   { t: 'Contacto', h: '/#contacto' },
 ];
-const item = 'text-[13px] font-semibold uppercase tracking-wider text-white hover:text-naranja-claro';
+const base = 'text-[13px] font-semibold uppercase tracking-wider transition-colors';
 
 export default function Header() {
   const [abierto, setAbierto] = useState(false);
+  const [solido, setSolido] = useState(false);
+  useEffect(() => {
+    const f = () => setSolido(window.scrollY > 40);
+    f();
+    window.addEventListener('scroll', f, { passive: true });
+    return () => window.removeEventListener('scroll', f);
+  }, []);
+  // Transparente sobre la portada; al bajar se vuelve blanco y se queda fijo arriba.
+  const item = `${base} ${solido ? 'text-grafito hover:text-naranja' : 'text-white hover:text-naranja-claro'}`;
   return (
     <>
-      <header className="absolute inset-x-0 top-0 z-30 border-b border-white/25">
-        <nav aria-label="Principal" className="flex items-center justify-between px-6 py-4 lg:px-14">
+      <header className={`fixed inset-x-0 top-0 z-40 border-b transition-all duration-300 ${solido ? 'border-black/10 bg-white/95 shadow-md backdrop-blur' : 'border-white/25 bg-transparent'}`}>
+        <nav aria-label="Principal" className={`flex items-center justify-between px-6 transition-all duration-300 lg:px-14 ${solido ? 'py-2' : 'py-4'}`}>
           <Link href="/" aria-label="Dynamedia, inicio">
-            <Image src="/brand/logo-dynamedia.png" alt="Dynamedia" width={400} height={100} priority className="h-auto w-48 lg:w-60" />
+            <Image src="/brand/logo-dynamedia.png" alt="Dynamedia" width={400} height={100} priority className={`h-auto transition-all duration-300 ${solido ? 'w-36 lg:w-44' : 'w-48 lg:w-60'}`} />
           </Link>
           <div className="hidden items-center gap-8 lg:flex">
             {links.map((l) => (
@@ -46,7 +55,7 @@ export default function Header() {
             <a href={FB} aria-label="Facebook" className={item}><Facebook size={18} /></a>
             <a href={WA} aria-label="WhatsApp" className={item}><MessageCircle size={20} /></a>
           </div>
-          <button aria-label={abierto ? 'Cerrar menú' : 'Abrir menú'} aria-expanded={abierto} onClick={() => setAbierto(!abierto)} className="text-white lg:hidden">
+          <button aria-label={abierto ? 'Cerrar menú' : 'Abrir menú'} aria-expanded={abierto} onClick={() => setAbierto(!abierto)} className={`${solido ? 'text-grafito' : 'text-white'} lg:hidden`}>
             {abierto ? <X size={30} /> : <Menu size={30} />}
           </button>
         </nav>
@@ -54,7 +63,7 @@ export default function Header() {
           <div className="max-h-[75vh] overflow-y-auto bg-azul-oscuro px-6 pb-6 lg:hidden">
             {links.map((l) => (
               <div key={l.t}>
-                <Link href={l.h} onClick={() => setAbierto(false)} className={`${item} block py-3`}>{l.t}</Link>
+                <Link href={l.h} onClick={() => setAbierto(false)} className={`${base} block py-3 text-white hover:text-naranja-claro`}>{l.t}</Link>
                 {l.sub && (
                   <ul className="mb-2 ml-3 space-y-1 border-l border-white/20 pl-4">
                     {l.sub.map((s) => <li key={s.h}><Link href={s.h} onClick={() => setAbierto(false)} className="block py-1.5 text-sm text-white/80 hover:text-naranja-claro">{s.t}</Link></li>)}

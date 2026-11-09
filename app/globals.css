@@ -48,3 +48,6 @@ body { @apply bg-white text-grafito antialiased; }
 @keyframes confeti { 0% { opacity: 1; transform: translate(0, 0) rotate(45deg) scale(.4); } 100% { opacity: 0; transform: translate(var(--dx), var(--dy)) rotate(225deg) scale(1); } }
 .confeti { opacity: 0; animation: confeti 1.2s .3s ease-out both; }
 @media (prefers-reduced-motion: reduce) { .trazo, .trazo-c { stroke-dashoffset: 0; } }
+
+/* Menú fijo: los enlaces a secciones dejan espacio arriba */
+html { scroll-padding-top: 5.5rem; }

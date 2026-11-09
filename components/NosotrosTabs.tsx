@@ -16,9 +16,9 @@ const hitos = [
   { icon: Building2, ano: 'Hoy', t: 'Una amplia cartera de clientes', d: 'Desarrollamos sitios y sistemas para empresas de distintos giros y seguimos acompañándolas con soporte y actualización.' },
 ];
 const distintivos = [
-  { icon: MessagesSquare, t: 'Comunicación directa', d: 'Creemos en hablar de frente con cada cliente para entender qué necesita.' },
-  { icon: LifeBuoy, t: 'Soporte después de entregar', d: 'Seguimos brindando soporte para el manejo y la actualización de tu sitio.' },
-  { icon: GraduationCap, t: 'Talleres y cursos', d: 'Capacitamos a equipos y a particulares para que administren su propio sitio.' },
+  { icon: MessagesSquare, t: 'Atención cercana y comunicación directa', d: 'Creemos en hablar de frente con cada cliente para entender qué necesita y ofrecerle soluciones funcionales.' },
+  { icon: LifeBuoy, t: 'Acompañamiento más allá del lanzamiento', d: 'Seguimos brindando soporte para el manejo y la actualización de tu sitio o sistema, y evolucionamos contigo.' },
+  { icon: GraduationCap, t: 'Capacitación para aprovechar la tecnología', d: 'Capacitamos a equipos y a particulares para que administren su propio sitio y aprovechen mejor sus herramientas digitales.' },
 ];
 const valores = [
   { icon: Lightbulb, t: 'Creatividad', d: 'Buscamos ideas propias para que cada proyecto se vea y funcione a la medida de su negocio.' },

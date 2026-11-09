@@ -62,7 +62,7 @@ export const areas: Area[] = [
     titulo: 'Lleva tus productos y servicios al mundo digital.',
     texto: 'Creamos tiendas en línea que facilitan la compra, administración y crecimiento de tu negocio.',
     lista: ['Diseño y desarrollo de tiendas en línea.', 'Integración de pasarelas de pago.', 'Catálogos digitales.', 'Integración de envíos y logística.', 'Administración y optimización de ecommerce.'],
-    cta: 'Descubre nuestras soluciones de comercio electrónico',
+    cta: 'Descubre nuestras soluciones de ecommerce',
     h1: 'Ecommerce y tiendas en línea en Monterrey, Nuevo León',
     title: 'Ecommerce en Monterrey: tiendas en línea que venden | Dynamedia',
     description: 'Soluciones de ecommerce en Monterrey: tiendas en línea, pasarelas de pago, catálogos y envíos para vender por internet. Cotiza tu tienda.',
